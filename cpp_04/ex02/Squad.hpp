@@ -6,7 +6,7 @@
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 16:36:57 by bkwag             #+#    #+#             */
-/*   Updated: 2021/06/28 08:31:50 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/06/30 11:15:52 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,18 @@
 # define SQUAD_HPP
 
 # include "ISquad.hpp"
+# include "ISpaceMarine.hpp"
 
 class Squad : public ISquad
 {
-
+private:
+	int count;
+	ISpaceMarine **array;
 public:
-	Suquad();
+	Squad();
 	~Squad();
-
-	Squad &operaotr=(Squad const &squad);
+	Squad(const Squad &squad);
+	Squad &operator=(Squad const &squad);
 
 	int getCount() const;
 	ISpaceMarine* getUnit(int index) const;
