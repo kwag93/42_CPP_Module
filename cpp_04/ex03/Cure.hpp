@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cure.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 14:04:39 by bkwag             #+#    #+#             */
-/*   Updated: 2021/06/30 16:09:31 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/06/30 16:09:31 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ class Cure: public AMateria
 {
 public:
 	Cure();
-	~Cure();
+	virtual ~Cure();
 	Cure(Cure const &cure);
 	Cure &operator=(Cure const &cure);
 	virtual AMateria* clone() const;
