@@ -1,23 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   C.hpp                                              :+:      :+:    :+:   */
+/*   mutantstack.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/04 10:46:14 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/04 11:10:58 by marvin           ###   ########.fr       */
+/*   Created: 2021/07/07 13:04:36 by bkwag             #+#    #+#             */
+/*   Updated: 2021/07/07 14:17:56 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef C_HPP
-# define C_HPP
-
-#include "Base.hpp"
-
-class C:public Base
-{
-	virtual ~C(){};
-};
-
-#endif
+#include "mutantstack.hpp"
