@@ -1,37 +1,30 @@
 
 #include "phonebook.hpp"
 
-void add(Contact contacts[], int count)
+Phonebook::Phonebook():count(0)
 {
-	std::string fields[11] = {
-		"First Name :",
-		"Last Name :",
-		"Nickname :",
-		"Login :",
-		"Address :",
-		"E-mail :",
-		"Phone :",
-		"Birthday :",
-		"Favorite Meal :",
-		"Underwear Color :",
-		"Darkest Secret :"
-	};
 
-	if (count >= 8)
+}
+
+Phonebook::~Phonebook()
+{
+
+}
+
+void Phonebook::add()
+{
+	if(this->count < 8)
 	{
-		std::cout<<"This phonebook is full. Cannot save the new one."<<std::endl;
-		return ;
+		this->contacts[this->count].add(this->count);
+		this->count++;
 	}
-	contacts[count].index = count;
-	for (int i=0; i<11; i++)
+	else
 	{
-		std::string data;
-		std::cout << fields[i];
-		std::getline(std::cin, data);
-		contacts[count].informations[i] = data;
-		std::cout << std::endl;
+		this->contacts[this->count % 8].add(this->count);
+		this->count++;
 	}
 }
+
 
 void	show_search_header(void)
 {
@@ -41,14 +34,19 @@ void	show_search_header(void)
 }
 
 
-void search(Contact contacts[], int count)
+void Phonebook::search()
 {
 	int number;
 
-	show_search_header();
-	for(int i = 0; i < count; i++)
+	if (this->count == 0)
 	{
-		contacts[i].display_simple();
+		std::cout << "* Please add a contact before searching" << std::endl;
+		return;
+	}
+	show_search_header();
+	for(int i = 0; i < 8; i++)
+	{
+		this->contacts[i].display_simple();
 	}
 	std::cout << "|-------------------------------------------|" << std::endl;
 	while(1)
@@ -65,46 +63,18 @@ void search(Contact contacts[], int count)
 		else
 			break;
 	}
-	std::cout << "|----------Detail Information for " << number << "---------|" << std::endl;
-	if (number < count)
-		contacts[number].display();
-	else
-		std::cout << "No such index" << std::endl;
-	std::cout << "|-------------------------------------------|" << std::endl;
-}
-
-
-int main(void)
-{
-	Contact contacts[8];
-	int count = 0;
-
-	std::cout << "* Enter your command [ADD, SEARCH, EXIT]:" << std::endl;
-	while(1)
+	if(this->count < 8)
 	{
-		std::string command;
-		std::cout<< ">>";
-		std::getline(std::cin, command);
-
-		if(!command.compare("ADD"))
-		{
-			add(contacts, count);
-			count++;
-		}
-		else if (!command.compare("SEARCH"))
-		{
-			if (count == 0)
-			{
-				std::cout << "* Please add a contact before searching" << std::endl;
-				continue;
-			}
-			search(contacts, count);
-		}
-		else if (!command.compare("EXIT"))
-		{
-			std::cout << "Bye." << std::endl;
-			exit(0);
-		}
+		if(number >=0 && number < 8)
+			this->contacts[number].display();
+		else
+			std::cout<<"----------No such index----------"<<std::endl;
 	}
-	return 0;
+	else
+	{
+		if(number < 0 || number >= 8)
+			std::cout<<"----------No such index----------"<<std::endl;
+		else
+			this->contacts[number % 8].display();
+	}
 }

@@ -6,11 +6,11 @@
 #    By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/22 11:02:15 by bkwag             #+#    #+#              #
-#    Updated: 2021/06/22 14:02:06 by bkwag            ###   ########.fr        #
+#    Updated: 2021/07/15 14:55:46 by bkwag            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS			= phonebook.cpp contact.cpp
+SRCS			= phonebook.cpp contact.cpp main.cpp
 OBJS			= $(SRCS:.cpp=.o)
 
 CXX				= clang++
