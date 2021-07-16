@@ -6,7 +6,7 @@
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 11:49:35 by bkwag             #+#    #+#             */
-/*   Updated: 2021/06/25 12:03:11 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/16 15:09:17 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,15 @@ class ClapTrap
 {
 public:
 	std::string name;
-	int hitPoint;
-	int maxHitPoint;
-	int energyPoint;
-	int maxEnergyPoint;
-	int	level;
-	int meleeAttackDamage;
-	int rangedAttackDamage;
-	int armorDamageReduction;
+	unsigned int HitPoint;
+	unsigned int EnergyPoint;
+	unsigned int AttackDamage;
 
 	ClapTrap(std::string name);
 	~ClapTrap();
-	virtual void rangedAttack(std::string const & target);
-	virtual void meleeAttack(std::string const & target);
+	ClapTrap(ClapTrap& const copy);
+	ClapTrap& operator=(ClapTrap& const copy);
+	void attack(std::string const & target);
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);
 };

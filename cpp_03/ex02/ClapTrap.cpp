@@ -6,7 +6,7 @@
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 11:49:37 by bkwag             #+#    #+#             */
-/*   Updated: 2021/06/25 12:17:48 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/16 15:16:23 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,35 @@
 ClapTrap::ClapTrap(std::string name)
 {
 	this->name = name;
-	std::cout << this->name << " will be created" << std::endl;
+	this->HitPoint = 10;
+	this->EnergyPoint = 10;
+	this->AttackDamage = 0;
+	std::cout << "ClapTrap "<< this->name << " is born" << std::endl;
 }
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << this->name << " will be dead" << std::endl;
+	std::cout << "ClapTrap "<< this->name << " is dead" << std::endl;
 }
 
-void ClapTrap::rangedAttack(std::string const & target)
+ClapTrap::ClapTrap(ClapTrap& const copy)
 {
-	std::cout << "Claptrap " << this->name << " attacks "
-	<< target << " at range, causing " << this->rangedAttackDamage
-	<< " points of damage!" << std::endl;
+	*this = copy;
 }
 
-void ClapTrap::meleeAttack(std::string const & target)
+ClapTrap& ClapTrap::operator=(ClapTrap& const copy)
+{
+	this->name = copy.name;
+	this->HitPoint = copy.HitPoint;
+	this->EnergyPoint = copy.EnergyPoint;
+	this->AttackDamage = copy.AttackDamage;
+	return (*this);
+}
+
+void ClapTrap::attack(std::string const & target)
 {
 	std::cout << "Claptrap " << this->name << " attacks "
-	<< target << " at melee, causing " << this->meleeAttackDamage
+	<< target << ", causing " << this->AttackDamage
 	<< " points of damage!" << std::endl;
 }
 
@@ -41,34 +51,23 @@ void ClapTrap::takeDamage(unsigned int amount)
 {
 	int damage;
 
-	amount -= this->armorDamageReduction;
-	if(this->hitPoint <= 0)
+	if(this->HitPoint <= 0)
 	{
-		std::cout << "FR4G-TP " << this->name << " is already dead."<<std::endl;
+		std::cout << this->name << " is already dead."<<std::endl;
 		return ;
 	}
-	if(this->hitPoint < amount)
-		damage = this->hitPoint;
+	if(this->HitPoint < amount)
+		damage = this->HitPoint;
 	else
 		damage = amount;
-	this->hitPoint -= damage;
-	std::cout << "FR4G-TP " << this->name << " is attacked! " << damage
+	this->HitPoint -= damage;
+	std::cout <<  this->name << " is attacked! " << damage
 	<< " points of damage!" << std::endl;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-	if(this->hitPoint >= this->maxHitPoint)
-	{
-		std::cout << "FR4G-TP " << this->name << " is already full HP."<<std::endl;
-		return ;
-	}
-	if (this->hitPoint < this->maxHitPoint)
-	{
-		if (this->hitPoint + amount > this->maxHitPoint)
-			amount =  this->maxHitPoint - this->hitPoint;
-		this->hitPoint += amount;
-	}
+	this->HitPoint += amount;
 	std::cout << this->name << " has Recovered by " << amount
 	<< " points!" << std::endl;
 }

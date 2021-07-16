@@ -6,7 +6,7 @@
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 11:30:52 by bkwag             #+#    #+#             */
-/*   Updated: 2021/06/25 14:33:31 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/16 14:55:218 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,35 @@
 
 ScavTrap::ScavTrap(std::string name):ClapTrap(name)
 {
-	std::cout << "Create Scav :" << name << std::endl;
-	this->level = 1;
-	this->energyPoint = 50;
-	this->maxEnergyPoint = 50;
-	this->meleeAttackDamage = 20;
-	this->rangedAttackDamage = 15;
-	this->armorDamageReduction = 3;
+	this->HitPoint = 100;
+	this->EnergyPoint = 50;
+	this->AttackDamage = 20;
+	std::cout <<"ScavTrap "<< this->name << " is born" << std::endl;
 }
 
 ScavTrap::~ScavTrap()
 {
-	std::cout << this->name << " GAME OVER" << std::endl;
+	std::cout << "ScavTrap "<< this->name << " is dead" << std::endl;
 }
 
-void ScavTrap::rangedAttack(std::string const & target)
+ScavTrap::ScavTrap(ScavTrap& const copy):ClapTrap(copy.name)
 {
-	std::cout << this->name << " attacks "
-	<< target << " at range, causing " << this->rangedAttackDamage
-	<< " points of damage!" << std::endl;
+	this->name = copy.name;
+	this->HitPoint = copy.HitPoint;
+	this->EnergyPoint = copy.EnergyPoint;
+	this->AttackDamage = copy.AttackDamage;
 }
 
-void ScavTrap::meleeAttack(std::string const & target)
+ScavTrap& ScavTrap::operator=(ScavTrap& const copy)
 {
-	std::cout << this->name << " attacks "
-	<< target << " at melee, causing " << this->meleeAttackDamage
-	<< " points of damage!" << std::endl;
+	this->name = copy.name;
+	this->HitPoint = copy.HitPoint;
+	this->EnergyPoint = copy.EnergyPoint;
+	this->AttackDamage = copy.AttackDamage;
+	return (*this);
 }
 
-void ScavTrap::challengeNewcomer()
+void ScavTrap::GuardGate()
 {
-	std::string dialogues[5] = {"Why So Serious!?", "I hope my death makes more cents than my life. ", "I haven't been happy one day out of my entire fucking life",
-	"Can you turn off the light?", "That's the answer, alchemist."};
-
-	std::cout << this->name << " : " << dialogues[rand() % 5] << std::endl;
+	std::cout << "ScavTrap changes to GuardGate mode." << std::endl;
 }
-
-

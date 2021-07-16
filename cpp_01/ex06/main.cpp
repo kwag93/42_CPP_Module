@@ -1,34 +1,26 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/23 11:17:52 by bkwag             #+#    #+#             */
-/*   Updated: 2021/06/23 11:39:19 by bkwag            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include "Karen.hpp"
 
-#include "Weapon.hpp"
-#include "HumanA.hpp"
-#include "HumanB.hpp"
-
-int main()
+int	main(int argc, char *argv[])
 {
-  {
-    Weapon club = Weapon("crude spiked club");
-    HumanA bob("Bob", club);
-    bob.attack();
-    club.setType("some other type of club");
-    bob.attack();
-  }
-  {
-    Weapon club = Weapon("crude spiked club");
-    HumanB jim("Jim");
-    jim.setWeapon(club);
-    jim.attack();
-    club.setType("some other type of club");
-    jim.attack();
-  }
+	Karen	karen;
+	std::string complaints[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+
+	if (argc != 2)
+	{
+		std::cout << "Not enough" << std::endl;
+		return 1;
+	}
+	else
+	{
+		for (int i=0;i<4;i++)
+		{
+			if (argv[1] == complaints[i])
+			{
+				karen.complainLevel(argv[1]);
+				return (0);
+			}
+		}
+		std::cout << "Probably complaining about insignificant problems" << std::endl;
+	}
+	return (0);
 }

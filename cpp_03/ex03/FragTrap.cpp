@@ -6,7 +6,7 @@
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 10:34:59 by bkwag             #+#    #+#             */
-/*   Updated: 2021/06/25 14:35:25 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/16 15:22:35 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,45 +14,36 @@
 
 FragTrap::FragTrap(std::string name):ClapTrap(name)
 {
-	std::cout << "Create Player :" << name << std::endl;
 	this->name = name;
-	this->energyPoint = 100;
-	this->maxEnergyPoint = 100;
-	this->level = 1;
-	this->meleeAttackDamage = 30;
-	this->rangedAttackDamage = 30;
-	this->armorDamageReduction = 5;
+	this->HitPoint = 100;
+	this->EnergyPoint = 100;
+	this->AttackDamage = 30;
+	std::cout << "FragTrap "<< this->name << " is born" << std::endl;
 }
 
 FragTrap::~FragTrap()
 {
-	std::cout << this->name << " GAME OVER" << std::endl;
+	std::cout << "FragTrap "<< this->name << " is born" << std::endl;
 }
 
-void FragTrap::rangedAttack(std::string const & target)
+FragTrap::FragTrap(FragTrap& const copy):ClapTrap(copy.name)
 {
-	std::cout << "FR4G-TP " << this->name << " attacks "
-	<< target << " at range, causing " << this->rangedAttackDamage
-	<< " points of damage!" << std::endl;
+	this->name = copy.name;
+	this->HitPoint = copy.HitPoint;
+	this->EnergyPoint = copy.EnergyPoint;
+	this->AttackDamage = copy.AttackDamage;
 }
 
-void FragTrap::meleeAttack(std::string const & target)
+FragTrap& FragTrap::operator=(FragTrap& const copy)
 {
-	std::cout << "FR4G-TP " << this->name << " attacks "
-	<< target << " at melee, causing " << this->meleeAttackDamage
-	<< " points of damage!" << std::endl;
+	this->name = copy.name;
+	this->HitPoint = copy.HitPoint;
+	this->EnergyPoint = copy.EnergyPoint;
+	this->AttackDamage = copy.AttackDamage;
+	return (*this);
 }
 
-void FragTrap::vaulthunter_dot_exe(std::string const & target)
+void FragTrap::highFivesGuys(void)
 {
-	std::string dialogues[5] = {"Fire in the hole! ", "Succeeding You, father. ", "Nurf this! ", "I can do this all day. ", "I love you 3000. "};
-
-	if (this->energyPoint >= 25)
-	{
-		this->energyPoint -= 25;
-		std::cout << this->name << ": " << dialogues[rand() % 5] << std::endl;
-		std::cout << this->rangedAttackDamage << " points of damage!" << std::endl;
-	}
-	else
-		std::cout << "Not enough energy" << std::endl;
+	std::cout << "✋ Let's high-five guys~!!" << std::endl;
 }

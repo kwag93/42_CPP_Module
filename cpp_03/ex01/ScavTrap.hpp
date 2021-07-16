@@ -6,7 +6,7 @@
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 11:30:56 by bkwag             #+#    #+#             */
-/*   Updated: 2021/06/25 11:36:26 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/16 14:57:15 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,14 @@
 # define SCAVTRAP_HPP
 
 #include <iostream>
-#include <random>
-#include <time.h>
+# include "ClapTrap.hpp"
 
-class ScavTrap
+class ScavTrap: virtual public ClapTrap
 {
 public:
-	std::string name;
-	int hitPoint;
-	int maxHitPoint;
-	int energyPoint;
-	int maxEnergyPoint;
-	int	level;
-	int meleeAttackDamage;
-	int rangedAttackDamage;
-	int armorDamageReduction;
-
 	ScavTrap(std::string name);
 	~ScavTrap();
-	void rangedAttack(std::string const & target);
-	void meleeAttack(std::string const & target);
-	void takeDamage(unsigned int amount);
-	void beRepaired(unsigned int amount);
-	void challengeNewcomer();
+	void GuardGate();
 };
 
 #endif

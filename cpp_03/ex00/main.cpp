@@ -6,25 +6,18 @@
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 11:18:44 by bkwag             #+#    #+#             */
-/*   Updated: 2021/06/25 11:30:01 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/16 14:51:10 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FragTrap.hpp"
+#include "ClapTrap.hpp"
 
 int main()
 {
-	FragTrap character("FR4G-TP");
+	ClapTrap clap("Clap");
 
-	srand(time(NULL));
-	for(int i = 0; i < 5; i++)
-		character.vaulthunter_dot_exe("Thanos");
-	character.takeDamage(100);
-	character.takeDamage(20);
-	character.takeDamage(30);
-	character.meleeAttack("hyunyoo");
-	character.rangedAttack("GLaDOS");
-	character.beRepaired(80);
-	character.beRepaired(20);
-	character.beRepaired(40);
+	clap.attack("Enemy");
+	clap.beRepaired(10);
+	clap.takeDamage(10);
+	return 0;
 }
