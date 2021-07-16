@@ -6,11 +6,12 @@ int main(void)
 	Phonebook phonebook;
 
 	std::cout << "* Enter your command [ADD, SEARCH, EXIT]:" << std::endl;
-	while(1)
+	while(!std::cin.eof())
 	{
 		std::string command;
 		std::cout<< ">>";
-		std::getline(std::cin, command);
+		std::cin>>command;
+		std::cin.ignore();
 
 		if(!command.compare("ADD"))
 		{

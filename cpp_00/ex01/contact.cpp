@@ -35,21 +35,15 @@ void Contact::display()
 		std::cout<<"----------No such index----------"<<std::endl;
 		return;
     }
-	std::string fields[11] = {
+	std::string fields[5] = {
 		"First Name : ",
 		"Last Name : ",
 		"Nickname : ",
-		"Login : ",
-		"Address : ",
-		"E-mail : ",
-		"Phone : ",
-		"Birthday : ",
-		"Favorite Meal : ",
-		"Underwear Color : ",
+		"Phone number: ",
 		"Darkest Secret : "
 	};
 	std::cout << "|----------Detail Information for " << this->index << "---------|" << std::endl;
-	for (int i=0; i < 11; i++)
+	for (int i=0; i < 5; i++)
     {
         std::cout << fields[i] << informations[i] << std::endl;
     }
@@ -58,22 +52,16 @@ void Contact::display()
 
 void Contact::add(int count)
 {
-	std::string fields[11] = {
+	std::string fields[5] = {
 		"First Name :",
 		"Last Name :",
 		"Nickname :",
-		"Login :",
-		"Address :",
-		"E-mail :",
-		"Phone :",
-		"Birthday :",
-		"Favorite Meal :",
-		"Underwear Color :",
+		"Phone number:",
 		"Darkest Secret :"
 	};
 
 	this->index = count % 8;
-	for (int i=0; i<11; i++)
+	for (int i=0; i<5; i++)
 	{
 		std::string data;
 		std::cout << fields[i];

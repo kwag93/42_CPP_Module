@@ -8,19 +8,13 @@
 class Contact {
 	private:
 		int index;
-		std::string			informations[11];
+		std::string			informations[5];
 		enum Field {
 			FirstName = 0,
 			LastName,
 			Nickname,
-			Login,
-			Address,
-			Email,
-			Phone,
-			Birthday,
-			FavoriteMeal,
-			UnderwearColor,
-			Secret
+			Phonenumber,
+			DarkestSecret
 		};
 	public:
 		Contact();

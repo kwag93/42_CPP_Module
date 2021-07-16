@@ -6,7 +6,7 @@
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 11:49:37 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/16 15:11:55 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/16 20:42:48 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ ClapTrap::~ClapTrap()
 
 ClapTrap::ClapTrap(ClapTrap& const copy)
 {
-	*this = copy;
+	this->name = copy.name;
+	this->HitPoint = copy.HitPoint;
+	this->EnergyPoint = copy.EnergyPoint;
+	this->AttackDamage = copy.AttackDamage;
 }
 
 ClapTrap& ClapTrap::operator=(ClapTrap& const copy)
