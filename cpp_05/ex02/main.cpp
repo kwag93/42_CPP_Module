@@ -6,7 +6,7 @@
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 10:01:26 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/01 14:50:00 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/19 16:14:30 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void    _test_presidential(std::string const& name_bure,
 
 void    _test_bure(std::string const& name_bure, int grade,
         std::string const& target) {
+
         std::cout << name_bure << "'s test" << std::endl;
 
         Bureaucrat              bure(name_bure, grade);
@@ -83,16 +84,31 @@ void    _test_bure(std::string const& name_bure, int grade,
         RobotomyRequestForm     robotomy(target);
         PresidentialPardonForm  presidential(target);
 
+    try{
         bure.signForm(shrubbery);
         bure.executeForm(shrubbery);
-
+    }
+    catch (std::exception& e) {
+        std::cout << "Error: " << e.what() << std::endl;
+        std::cout << std::endl;
+    }
+	try{
         bure.signForm(robotomy);
         bure.executeForm(robotomy);
+	}
+    catch (std::exception& e) {
+        std::cout << "Error: " << e.what() << std::endl;
+        std::cout << std::endl;
+    }
 
+	try{
         bure.signForm(presidential);
         bure.executeForm(presidential);
-
+	}
+    catch (std::exception& e) {
+        std::cout << "Error: " << e.what() << std::endl;
         std::cout << std::endl;
+    }
 }
 
 int main() {

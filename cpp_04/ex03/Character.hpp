@@ -6,7 +6,7 @@
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 14:04:35 by bkwag             #+#    #+#             */
-/*   Updated: 2021/06/30 16:44:51 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/19 15:57:09 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ private:
 	std::string name;
 	AMateria *inventory[4];
 public:
+	Character();
 	Character(std::string name);
 	virtual ~Character();
 	Character(const Character &character);

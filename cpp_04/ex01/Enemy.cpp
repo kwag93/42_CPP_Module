@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   Enemy.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 11:12:59 by bkwag             #+#    #+#             */
-/*   Updated: 2021/06/27 12:47:17 by marvin           ###   ########.fr       */
+/*   Updated: 2021/07/19 15:33:56 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Enemy.hpp"
 
+Enemy::Enemy()
+{
+	this->hp = 0;
+	this->type = "";
+}
 
 Enemy::Enemy(int hp, std::string const & type)
 {

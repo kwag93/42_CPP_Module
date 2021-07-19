@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Aweapon.hpp                                        :+:      :+:    :+:   */
+/*   AWeapon.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 11:12:42 by bkwag             #+#    #+#             */
-/*   Updated: 2021/06/27 12:31:11 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/19 15:26:04 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ protected:
 	int damage;
 	int apcost;
 public:
+	AWeapon();
 	AWeapon(std::string const & name, int apcost, int damage);
 	~AWeapon();
 	std::string getName(void) const;

@@ -6,7 +6,7 @@
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 10:22:51 by bkwag             #+#    #+#             */
-/*   Updated: 2021/06/27 11:07:02 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/19 15:12:07 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 class Peon : public Victim
 {
 public:
+	Peon();
 	Peon(std::string name);
 	~Peon();
 	Peon &operator=(const Peon& peon);

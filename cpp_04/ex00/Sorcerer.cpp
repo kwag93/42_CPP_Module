@@ -6,21 +6,26 @@
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 10:22:55 by bkwag             #+#    #+#             */
-/*   Updated: 2021/06/27 11:08:35 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/19 15:25:48 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Sorcerer.hpp"
 
+Sorcerer::Sorcerer()
+{
+	std::cout<<"Default constructor Sorcerer"<<std::endl;
+}
+
 Sorcerer::Sorcerer(std::string name, std::string title)
 :name(name), title(title)
 {
-	std::cout << this->name <<", "<< this->title << ", is born !"<<std::endl;
+	std::cout << this->name <<" "<< this->title << ", is born !"<<std::endl;
 }
 
 Sorcerer::~Sorcerer()
 {
-	std::cout << this->name << ", " << this->title << ", is dead. Consequences will never be the same !" << std::endl;
+	std::cout << this->name << " " << this->title << ", is dead. Consequences will never be the same !" << std::endl;
 }
 
 Sorcerer &Sorcerer::operator=(const Sorcerer& sor)
@@ -38,7 +43,7 @@ Sorcerer::Sorcerer(const Sorcerer& sor)
 
 std::ostream &operator<<(std::ostream &out, Sorcerer const &sorcerer)
 {
-	out << "I am " << sorcerer.name << ", " << sorcerer.title << ", and I like ponies !" << std::endl;
+	out << "I'm " << sorcerer.getName() << " " << sorcerer.getTitle() << ", and I like ponies !" << std::endl;
 	return out;
 }
 
@@ -50,4 +55,14 @@ void Sorcerer::polymorph(Victim const &victim) const
 void Sorcerer::polymorph(Peon const &poem) const
 {
 	poem.getPolymorphed();
+}
+
+std::string Sorcerer::getName() const
+{
+	return this->name;
+}
+
+std::string Sorcerer::getTitle() const
+{
+	return this->title;
 }

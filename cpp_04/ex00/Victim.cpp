@@ -6,11 +6,16 @@
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 10:23:04 by bkwag             #+#    #+#             */
-/*   Updated: 2021/06/27 11:08:30 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/19 15:22:52 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Victim.hpp"
+
+Victim::Victim()
+{
+	std::cout<<"Default constructor Peon"<<std::endl;
+}
 
 Victim::Victim(std::string name):
 name(name)
@@ -36,11 +41,16 @@ Victim::Victim(const Victim& vic)
 
 void Victim::getPolymorphed() const
 {
-	std::cout << this->name << "has been turned into a cute little sheep!" << std::endl;
+	std::cout << this->name << " has been turned into a cute little sheep!" << std::endl;
 }
 
 std::ostream &operator<<(std::ostream &out, Victim const &victim)
 {
-	out << "I am " << victim.name << ", and I like otters!" << std::endl;
+	out << "I'm " << victim.getName() << ", and I like otters!" << std::endl;
 	return out;
+}
+
+std::string Victim::getName() const
+{
+	return this->name;
 }

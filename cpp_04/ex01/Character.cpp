@@ -12,6 +12,13 @@
 
 #include "Character.hpp"
 
+Character::Character()
+{
+	this->name = "";
+	this->ap = 0;
+	this->weapon = NULL;
+}
+
 Character::Character(std::string const & name)
 {
 	this->name = name;
@@ -25,16 +32,16 @@ Character::~Character()
 
 Character::Character(const Character & charac)
 {
-	this->ap = charac.ap;
-	this->name = charac.name;
-	this->weapon = charac.weapon;
+	this->name = charac.getName();
+	this->ap = charac.getAP();
+	this->weapon = charac.getWeapon();
 }
 
 Character &Character::operator=(const Character& charac)
 {
-	this->name = charac.name;
-	this->ap = charac.ap;
-	this->weapon = charac.weapon;
+	this->name = charac.getName();
+	this->ap = charac.getAP();
+	this->weapon = charac.getWeapon();
 	return *this;
 }
 
@@ -74,11 +81,21 @@ std::string Character::getName() const
 
 std::ostream &operator<<(std::ostream &out, Character const &character)
 {
-	if (!character.weapon)
+	if (!character.getWeapon())
 	{
-		out << character.name << " has " << character.ap << " AP and is unarmed" << std::endl;
+		out << character.getName() << " has " << character.getAP() << " AP and is unarmed" << std::endl;
 	}
 	else
-		out << character.name << " has " << character.ap << " AP and wields a " << character.weapon->getName() << std::endl;
+		out << character.getName() << " has " << character.getAP() << " AP and wields a " << character.getWeapon()->getName() << std::endl;
 	return out;
+}
+
+int	Character::getAP() const
+{
+	return this->ap;
+}
+
+AWeapon *Character::getWeapon() const
+{
+	return this->weapon;
 }

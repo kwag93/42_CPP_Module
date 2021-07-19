@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Enemy.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 11:13:02 by bkwag             #+#    #+#             */
-/*   Updated: 2021/06/27 12:43:33 by marvin           ###   ########.fr       */
+/*   Updated: 2021/07/19 15:26:50 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ protected:
 	int hp;
 	std::string type;
 public:
+	Enemy();
 	Enemy(int hp, std::string const & type);
 	virtual ~Enemy();
 	Enemy(const Enemy& enemy);

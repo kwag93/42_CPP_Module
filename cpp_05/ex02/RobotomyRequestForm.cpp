@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 10:04:36 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/01 15:02:32 by marvin           ###   ########.fr       */
+/*   Updated: 2021/07/19 16:11:58 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ bool RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
 	srand(time(NULL));
 
+	if(executor.getGrade() > this->getExecuteGrade())
+		throw Form::GradeTooLowException();
 	std::cout << " dudududududdu... dududududududu.. " << std::endl;
 	int random = rand() % 100;
 	if(random > 50)

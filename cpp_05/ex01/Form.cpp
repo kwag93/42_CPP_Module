@@ -50,12 +50,12 @@ std::string const Form::getName() const
 	return this->name;
 }
 
-int const Form::getSignGrade() const
+int Form::getSignGrade() const
 {
 	return this->signGrade;
 }
 
-int const Form::getExecuteGrade() const
+int Form::getExecuteGrade() const
 {
 	return this->executeGrade;
 }

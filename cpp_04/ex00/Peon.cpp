@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   Peon.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 10:22:49 by bkwag             #+#    #+#             */
-/*   Updated: 2021/06/27 11:08:45 by marvin           ###   ########.fr       */
+/*   Updated: 2021/07/19 15:13:07 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Peon.hpp"
+
+Peon::Peon()
+{
+	std::cout<<"Default constructor Peon"<<std::endl;
+}
 
 Peon::Peon(std::string name):Victim(name)
 {

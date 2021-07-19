@@ -6,11 +6,15 @@
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 14:04:33 by bkwag             #+#    #+#             */
-/*   Updated: 2021/06/30 17:06:41 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/19 15:57:11 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
+
+AMateria::AMateria()
+{
+}
 
 Character::Character(std::string name):name(name)
 {

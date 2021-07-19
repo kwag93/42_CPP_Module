@@ -6,7 +6,7 @@
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 09:33:38 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/16 20:42:59 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/19 14:18:51 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ public:
 	void announce();
 };
 
-void	randomChump(void);
-Zombie *newZombie(std::string new_name);
+void	randomChump(std::string name);
+Zombie *newZombie(std::string name);
 
 #endif

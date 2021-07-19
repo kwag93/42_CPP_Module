@@ -6,7 +6,7 @@
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 11:49:35 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/16 20:42:53 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/19 14:53:26 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,18 @@
 
 class ClapTrap
 {
-public:
+protected:
 	std::string name;
 	unsigned int HitPoint;
 	unsigned int EnergyPoint;
 	unsigned int AttackDamage;
-
+public:
+	ClapTrap();
 	ClapTrap(std::string name);
 	~ClapTrap();
-	ClapTrap(ClapTrap& const copy);
-	ClapTrap& operator=(ClapTrap& const copy);
-	void attack(std::string const & target);
+	ClapTrap(const ClapTrap& copy);
+	ClapTrap& operator=(const ClapTrap& copy);
+	void attack(const std::string &target);
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);
 };

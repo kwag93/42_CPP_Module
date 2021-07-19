@@ -6,7 +6,7 @@
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 10:03:20 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/01 14:49:59 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/19 16:04:56 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ public:
 	Form(const Form & other);
 	Form &operator=(const Form& form);
 	std::string const getName() const;
-	int const getSignGrade() const;
-	int const getExecuteGrade() const;
+	int getSignGrade() const;
+	int getExecuteGrade() const;
 	bool getSigned() const;
 	void beSigned(Bureaucrat &bur);
 	class GradeTooHighException : public std::exception

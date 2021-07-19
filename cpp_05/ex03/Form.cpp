@@ -6,7 +6,7 @@
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 10:03:18 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/01 14:50:03 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/19 16:04:34 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ std::string const Form::getName() const
 	return this->name;
 }
 
-int const Form::getSignGrade() const
+int Form::getSignGrade() const
 {
 	return this->signGrade;
 }
 
-int const Form::getExecuteGrade() const
+int Form::getExecuteGrade() const
 {
 	return this->executeGrade;
 }

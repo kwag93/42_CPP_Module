@@ -12,20 +12,25 @@
 
 #include "ScavTrap.hpp"
 
+ScavTrap::ScavTrap():ClapTrap()
+{
+	std::cout<<"Default constructor ScavTrap"<<std::endl;
+}
+
 ScavTrap::ScavTrap(std::string name):ClapTrap(name)
 {
+	std::cout<<"Constructor ScavTrap"<<std::endl;
 	this->HitPoint = 100;
 	this->EnergyPoint = 50;
 	this->AttackDamage = 20;
-	std::cout <<"ScavTrap "<< this->name << " is born" << std::endl;
 }
 
 ScavTrap::~ScavTrap()
 {
-	std::cout << "ScavTrap "<< this->name << " is dead" << std::endl;
+	std::cout<<"Destructor ScavTrap"<<std::endl;
 }
 
-ScavTrap::ScavTrap(ScavTrap& const copy):ClapTrap(copy.name)
+ScavTrap::ScavTrap(const ScavTrap& copy):ClapTrap(copy.name)
 {
 	this->name = copy.name;
 	this->HitPoint = copy.HitPoint;
@@ -33,7 +38,7 @@ ScavTrap::ScavTrap(ScavTrap& const copy):ClapTrap(copy.name)
 	this->AttackDamage = copy.AttackDamage;
 }
 
-ScavTrap& ScavTrap::operator=(ScavTrap& const copy)
+ScavTrap& ScavTrap::operator=(const ScavTrap& copy)
 {
 	this->name = copy.name;
 	this->HitPoint = copy.HitPoint;

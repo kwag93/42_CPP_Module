@@ -6,7 +6,7 @@
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 11:30:56 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/16 20:42:47 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/19 14:43:28 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@
 class ScavTrap: virtual public ClapTrap
 {
 public:
+	ScavTrap();
 	ScavTrap(std::string name);
 	~ScavTrap();
-	ScavTrap(ScavTrap& const copy);
-	ScavTrap& operator=(ScavTrap& const copy);
+	ScavTrap(const ScavTrap& copy);
+	ScavTrap& operator=(const ScavTrap& copy);
 	void GuardGate();
 };
 

@@ -6,7 +6,7 @@
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 11:12:57 by bkwag             #+#    #+#             */
-/*   Updated: 2021/06/27 12:39:38 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/19 15:39:01 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@
 
 class Character
 {
-public:
+private:
 	std::string name;
 	int ap;
 	AWeapon *weapon;
-
+public:
+	Character();
 	Character(std::string const & name);
 	~Character();
 	Character(const Character& charac);
@@ -32,6 +33,8 @@ public:
 	void equip(AWeapon* weapon);
 	void attack(Enemy* enemy);
 	std::string  getName() const;
+	int	getAP() const;
+	AWeapon *getWeapon() const;
 };
 
 std::ostream &operator<<(std::ostream &out, Character const &character);

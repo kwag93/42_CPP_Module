@@ -6,18 +6,18 @@
 #    By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/16 14:49:41 by bkwag             #+#    #+#              #
-#    Updated: 2021/07/16 14:54:01 by bkwag            ###   ########.fr        #
+#    Updated: 2021/07/19 14:44:03 by bkwag            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS			= ClapTrap.cpp ScavTrap.cpp main.cpp
+SRCS			= ClapTrap.cpp ScavTrap.cpp FragTrap.cpp main.cpp
 OBJS			= $(SRCS:.cpp=.o)
 
 CXX				= clang++
 RM				= rm -f
 CXXFLAGS		= -Wall -Wextra -Werror -I.
 
-NAME			= ScavTrap
+NAME			= FragTrap
 
 all:			$(NAME)
 

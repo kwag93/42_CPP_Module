@@ -6,11 +6,17 @@
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 10:01:24 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/01 11:22:20 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/19 15:58:55 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+
+
+Bureaucrat::Bureaucrat()
+{
+	std::cout<<"Default constructor Bureaucrat"<<std::endl;
+}
 
 Bureaucrat::Bureaucrat(std::string name, int grade):name(name)
 {

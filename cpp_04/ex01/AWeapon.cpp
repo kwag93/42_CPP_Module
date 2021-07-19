@@ -1,16 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Aweapon.cpp                                        :+:      :+:    :+:   */
+/*   AWeapon.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 11:12:53 by bkwag             #+#    #+#             */
-/*   Updated: 2021/06/27 12:40:31 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/19 15:34:09 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AWeapon.hpp"
+
+AWeapon::AWeapon()
+{
+	this->name = "";
+	this->damage = 0;
+	this->apcost = 0;
+}
 
 AWeapon::AWeapon(std::string const & name, int apcost, int damage)
 {

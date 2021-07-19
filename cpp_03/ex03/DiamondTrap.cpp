@@ -6,22 +6,28 @@
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 15:20:32 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/16 20:42:38 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/19 15:09:45 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap(std::string name):ClapTrap(name), ScavTrap(name), FragTrap(name)
+DiamondTrap::DiamondTrap()
 {
+	std::cout<<"Default constructor DiamondTrap"<<std::endl;
+}
+
+DiamondTrap::DiamondTrap(std::string name):ClapTrap(name), FragTrap(name), ScavTrap(name)
+{
+	std::cout<<"Constructor DiamondTrap"<<std::endl;
 	this->name = name;
 	this->HitPoint = this->FragTrap::HitPoint;
 	this->EnergyPoint = this->ScavTrap::EnergyPoint;
 	this->AttackDamage = this->FragTrap::AttackDamage;
-	std::cout << "DiamondTrap "<< this->name << " is born" << std::endl;
+	this->ClapTrap::name = name+"_clap_name";
 }
 
-DiamondTrap::DiamondTrap(DiamondTrap& const copy):ClapTrap(copy.name)
+DiamondTrap::DiamondTrap(const DiamondTrap& copy):ClapTrap(copy.name)
 {
 	this->name = copy.name;
 	this->HitPoint = copy.HitPoint;
@@ -29,7 +35,12 @@ DiamondTrap::DiamondTrap(DiamondTrap& const copy):ClapTrap(copy.name)
 	this->AttackDamage = copy.AttackDamage;
 }
 
-DiamondTrap& DiamondTrap::operator=(DiamondTrap& const copy):ClapTrap()
+DiamondTrap::~DiamondTrap()
+{
+	std::cout<<"Destructor DiamondTrap"<<std::endl;
+}
+
+DiamondTrap& DiamondTrap::operator=(const DiamondTrap& copy)
 {
 	this->name = copy.name;
 	this->HitPoint = copy.HitPoint;
@@ -38,27 +49,12 @@ DiamondTrap& DiamondTrap::operator=(DiamondTrap& const copy):ClapTrap()
 	return (*this);
 }
 
-std::string DiamondTrap::getName()
+void DiamondTrap::attack(const std::string &target)
 {
-	return this->name;
-}
-
-unsigned int DiamondTrap::getHitPoint()
-{
-	return this->HitPoint;
-}
-
-unsigned int DiamondTrap::getEnergyPoint()
-{
-	return this->EnergyPoint;
-}
-
-unsigned int DiamondTrap::getAttackDamage()
-{
-	return this->AttackDamage;
+	ScavTrap::attack(target);
 }
 
 void DiamondTrap::whoAmI()
 {
-	std::cout << " My name is " << this->name << " clapTrap name is " << this->ClapTrap::name << std::endl;
+	std::cout << "My name is " << this->name << " clapTrap name is " << this->ClapTrap::name << std::endl;
 }

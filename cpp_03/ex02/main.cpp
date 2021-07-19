@@ -6,7 +6,7 @@
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 11:18:44 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/16 20:42:55 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/19 14:46:15 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main()
 {
-	FragTrap frag("frag");
+	FragTrap frag("fragtrap");
 
 	frag.highFivesGuys();
 	frag.attack("bkwag");

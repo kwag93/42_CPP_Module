@@ -6,27 +6,32 @@
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 11:49:37 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/16 20:42:48 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/19 14:40:08 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
+ClapTrap::ClapTrap()
+{
+	std::cout<<"Default constructor ClapTrap"<<std::endl;
+}
+
 ClapTrap::ClapTrap(std::string name)
 {
+	std::cout<<"Constructor ClapTrap"<<std::endl;
 	this->name = name;
 	this->HitPoint = 10;
 	this->EnergyPoint = 10;
 	this->AttackDamage = 0;
-	std::cout << "ClapTrap "<< this->name << " is born" << std::endl;
 }
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "ClapTrap "<< this->name << " is dead" << std::endl;
+	std::cout<<"Destructor ClapTrap"<<std::endl;
 }
 
-ClapTrap::ClapTrap(ClapTrap& const copy)
+ClapTrap::ClapTrap(const ClapTrap& copy)
 {
 	this->name = copy.name;
 	this->HitPoint = copy.HitPoint;
@@ -34,7 +39,7 @@ ClapTrap::ClapTrap(ClapTrap& const copy)
 	this->AttackDamage = copy.AttackDamage;
 }
 
-ClapTrap& ClapTrap::operator=(ClapTrap& const copy)
+ClapTrap& ClapTrap::operator=(const ClapTrap& copy)
 {
 	this->name = copy.name;
 	this->HitPoint = copy.HitPoint;
@@ -43,7 +48,7 @@ ClapTrap& ClapTrap::operator=(ClapTrap& const copy)
 	return (*this);
 }
 
-void ClapTrap::attack(std::string const & target)
+void ClapTrap::attack(const std::string &target)
 {
 	std::cout << "Claptrap " << this->name << " attacks "
 	<< target << ", causing " << this->AttackDamage

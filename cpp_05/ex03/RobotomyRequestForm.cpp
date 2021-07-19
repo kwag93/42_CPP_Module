@@ -6,7 +6,7 @@
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 10:04:36 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/01 15:02:30 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/19 16:15:53 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ bool RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
 	srand(time(NULL));
 
+	if(executor.getGrade() > this->getExecuteGrade())
+		throw Form::GradeTooLowException();
 	std::cout << " dudududududdu... dududududududu.. " << std::endl;
 	int random = rand() % 100;
 	if(random > 50)
