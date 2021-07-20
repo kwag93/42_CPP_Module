@@ -6,7 +6,7 @@
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/04 10:23:54 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/04 10:46:32 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/20 15:35:01 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,24 @@
 
 int main()
 {
-	srand(time(NULL));
-	Data *data = new Data();
-	for (int i = 0; i < 5; i++)
-	{
-		std::cout << "test " << i << ": " << '\n';
-		void *raw = data->serialize();
-		Data *temp = data->deserialize(raw);
+	Data data("a", "b", 1);
 
-		std::cout << "\tstr1: " << temp->str1 << '\n';
-		std::cout << "\tn:    " << temp->num <<'\n';
-		std::cout << "\tstr2: " << temp->str2 << std::endl;
+	uintptr_t iPtr = serialize(&data);
+	Data *dPtr = deserialize(iPtr);
 
-	}
-	delete data;
+	std::cout
+		<< "a : " << data.getStr1() << std::endl
+		<< "b : " << data.getStr2() << std::endl
+		<< "1 : "
+		<< data.getNum() << std::endl;
+
+	std::cout
+		<< "a : "
+		<< dPtr->getStr1() << std::endl
+		<< "b : "
+		<< dPtr->getStr2() << std::endl
+		<< "1 : "
+		<< dPtr->getNum() << std::endl;
+
 	return (0);
 }

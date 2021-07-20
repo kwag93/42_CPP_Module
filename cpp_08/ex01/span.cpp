@@ -6,7 +6,7 @@
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 10:56:45 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/07 11:41:13 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/20 15:50:28 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Span::~Span()
 
 void Span::addNumber(int num)
 {
-	if(this->count >= this->arr_len)
+	if (this->count >= this->arr_len)
 	{
 		throw MemoryException();
 	}
@@ -38,50 +38,48 @@ void Span::addNumber(int num)
 void Span::addNumber(int start, int end)
 {
 	srand(time(NULL));
-	for(int i = start; i<end; i++)
+	for (int i = start; i < end; i++)
 	{
-		this->addNumber(rand()%10000);
+		this->addNumber(rand() % 10000);
 	}
 }
 
 void Span::sort()
 {
-	for(int i = 0; i<this->count - 1;i++)
+	for (int i = 0; i < this->count - 1; i++)
 	{
 		int min = i;
-		for(int j = i + 1; j < this->count; j++)
+		for (int j = i + 1; j < this->count; j++)
 		{
-			if(this->arr[j] < this->arr[min])
+			if (this->arr[j] < this->arr[min])
 				min = j;
 		}
-		if(i != min)
+		if (i != min)
 		{
 			int temp = this->arr[i];
 			this->arr[i] = this->arr[min];
 			this->arr[min] = temp;
 		}
 	}
-	for(int i = 0; i<this->count; i++)
-		std::cout << this->arr[i] <<std::endl;
 }
 
 int Span::shortestSpan()
 {
 	int span = INT_MAX;
-	if(this->count <= 1)
+	if (this->count <= 1)
 		throw ArrayLackException();
 	this->sort();
-	for(int i = 0; i<this->count - 1; i++)
+	for (int i = 0; i < this->count - 1; i++)
 	{
-		if(this->arr[i+1] - this->arr[i] < span)
-			span = this->arr[i+1] - this->arr[i];
+		if (this->arr[i + 1] - this->arr[i] < span)
+			span = this->arr[i + 1] - this->arr[i];
 	}
 	return span;
 }
 
 int Span::longestSpan()
 {
-	if(this->count <= 1)
+	if (this->count <= 1)
 		throw ArrayLackException();
 	this->sort();
 	return this->arr[this->count - 1] - this->arr[0];

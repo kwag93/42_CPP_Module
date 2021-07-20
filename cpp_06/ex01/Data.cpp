@@ -6,36 +6,61 @@
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/04 10:25:01 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/04 10:38:19 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/20 15:34:224 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Data.hpp"
 
-void *Data::serialize(void)
+uintptr_t serialize(Data *ptr)
 {
-	char alpha[26] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
-	std::string new_name;
-	int len;
-
-	len = rand() % 4 + 4;
-	for(int i = 0; i < len; i++)
-	{
-		new_name += alpha[rand() % 26];
-	}
-	this->str1 = new_name;
-	this->num = rand() % 100000;
-	len = rand() % 7 + 4;
-	new_name = "";
-	for(int i = 0; i < len; i++)
-	{
-		new_name += alpha[rand() % 26];
-	}
-	this->str2 = new_name;
-	return (void *)this;
+	return reinterpret_cast<uintptr_t>(ptr);
 }
 
-Data *Data::deserialize(void * raw)
+Data *deserialize(uintptr_t raw)
 {
-	return (Data *)raw;
+	return reinterpret_cast<Data *>(raw);
+}
+
+Data::Data()
+{
+	std::cout << "Default constructor" << std::endl;
+}
+
+Data::Data(std::string str1, std::string str2, int num) : str1(str1), str2(str2), num(num)
+{
+	std::cout << "Constructor" << std::endl;
+}
+
+Data::~Data()
+{
+	std::cout << "Destructor" << std::endl;
+}
+
+Data::Data(const Data &other)
+{
+	*this = other;
+}
+
+Data &Data::operator=(const Data &data)
+{
+	this->str1 = data.str1;
+	this->str2 = data.str2;
+	this->num = data.num;
+	return *this;
+}
+
+std::string Data::getStr1() const
+{
+	return this->str1;
+}
+
+std::string Data::getStr2() const
+{
+	return this->str2;
+}
+
+int Data::getNum() const
+{
+	return this->num;
 }
