@@ -1,10 +1,22 @@
 #include "Karen.hpp"
+#include <string>
 
-int	main(int argc, char *argv[])
+level levelType(std::string const &type)
 {
-	Karen	karen;
-	std::string complaints[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	if (type == "DEBUG")
+		return debug;
+	if (type == "INFO")
+		return info;
+	if (type == "WARNING")
+		return warning;
+	if (type == "ERROR")
+		return error;
+	return notImportant;
+}
 
+int main(int argc, char *argv[])
+{
+	Karen karen;
 	if (argc != 2)
 	{
 		std::cout << "Not enough" << std::endl;
@@ -12,15 +24,21 @@ int	main(int argc, char *argv[])
 	}
 	else
 	{
-		for (int i=0;i<4;i++)
+		switch (levelType(argv[1]))
 		{
-			if (argv[1] == complaints[i])
-			{
-				karen.complainLevel(argv[1]);
-				return (0);
-			}
+		case debug:
+			karen.complain("DEBUG");
+		case info:
+			karen.complain("INFO");
+		case warning:
+			karen.complain("WARNING");
+		case error:
+			karen.complain("ERROR");
+			break;
+		default:
+			std::cout << "Probably complaining about insignificant problems" << std::endl;
+			break;
 		}
-		std::cout << "Probably complaining about insignificant problems" << std::endl;
 	}
 	return (0);
 }
