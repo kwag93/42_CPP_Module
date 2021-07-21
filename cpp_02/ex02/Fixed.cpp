@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 10:53:44 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/16 11:40:44 by marvin           ###   ########.fr       */
+/*   Updated: 2021/07/21 16:12:35 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,56 +48,56 @@ std::ostream &operator<<(std::ostream &out, Fixed const &output)
 	return out;
 }
 
-Fixed &Fixed::operator+(Fixed value)
+Fixed &Fixed::operator+(const Fixed &value)
 {
 	this->value += value.value;
 	return *this;
 }
 
-Fixed &Fixed::operator-(Fixed value)
+Fixed &Fixed::operator-(const Fixed &value)
 {
 	this->value -= value.value;
 	return *this;
 }
 
-Fixed &Fixed::operator*(Fixed value)
+Fixed &Fixed::operator*(const Fixed &value)
 {
 	this->value *= (value.value / (1 << value.bit));
 	return *this;
 }
 
-Fixed &Fixed::operator/(Fixed value)
+Fixed &Fixed::operator/(const Fixed &value)
 {
 	this->value /= (value.value * (1 << value.bit));
 	return *this;
 }
 
-bool Fixed::operator>(Fixed value)
+bool Fixed::operator>(const Fixed &value)
 {
 	return (this->value > value.value);
 }
 
-bool Fixed::operator<(Fixed value)
+bool Fixed::operator<(const Fixed &value)
 {
 	return (this->value < value.value);
 }
 
-bool Fixed::operator<=(Fixed value)
+bool Fixed::operator<=(const Fixed &value)
 {
 	return (this->value <= value.value);
 }
 
-bool Fixed::operator>=(Fixed value)
+bool Fixed::operator>=(const Fixed &value)
 {
 	return (this->value >= value.value);
 }
 
-bool Fixed::operator==(Fixed value)
+bool Fixed::operator==(const Fixed &value)
 {
 	return (this->value == value.value);
 }
 
-bool Fixed::operator!=(Fixed value)
+bool Fixed::operator!=(const Fixed &value)
 {
 	return (this->value != value.value);
 }
@@ -128,20 +128,38 @@ Fixed Fixed::operator--(int)
 	return temp;
 }
 
-float Fixed::max(Fixed a, Fixed b)
+Fixed Fixed::max(Fixed &a, Fixed &b)
 {
 	if (a < b)
-		return b.toFloat();
+		return b;
 	else
-		return a.toFloat();
+		return a;
 }
 
-float Fixed::min(Fixed a, Fixed b)
+Fixed Fixed::min(Fixed &a, Fixed &b)
 {
 	if (a > b)
-		return b.toFloat();
+		return b;
 	else
-		return a.toFloat();
+		return a;
+}
+
+Fixed const Fixed::max(const Fixed &a, const Fixed &b)
+{
+	Fixed temp(a);
+	if (temp < b)
+		return b;
+	else
+		return a;
+}
+
+Fixed const Fixed::min(const Fixed &a, const Fixed &b)
+{
+	Fixed temp(a);
+	if (temp > b)
+		return b;
+	else
+		return a;
 }
 
 float Fixed::toFloat(void) const
