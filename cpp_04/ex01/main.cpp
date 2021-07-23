@@ -1,39 +1,31 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/27 11:13:06 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/19 15:41:31 by bkwag            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "Character.hpp"
-#include "PlasmaRifle.hpp"
-#include "PowerFist.hpp"
-#include "RadScorpion.hpp"
-#include "SuperMutant.hpp"
+#include <iostream>
+#include "Dog.hpp"
+#include "Cat.hpp"
 
 int main()
 {
-	Character* me = new Character("me");
-	std::cout << *me;
-	Enemy* b = new RadScorpion();
-	AWeapon* pr = new PlasmaRifle();
-	AWeapon* pf = new PowerFist();
-	me->equip(pr);
-	std::cout << *me;
-	me->equip(pf);
-	me->attack(b);
-	std::cout << *me;
-	me->equip(pr);
-	std::cout << *me;
-	me->attack(b);
-	std::cout << *me;
-	me->attack(b);
-	std::cout << *me;
-
-	return 0;
+	{
+		Animal *Animals[10];
+		for (int i = 0; i < 10; ++i)
+		{
+			if (i % 2 == 0)
+				Animals[i] = new Dog();
+			else
+				Animals[i] = new Cat();
+		}
+		std::cout << "\n-----------------------------" << std::endl;
+		Animal *copy = Animals[5];
+		for (int i = 0; i < 100; ++i)
+		{
+			std::cout << ((Cat *)copy)->getBrain()->getIdea(i) << "    ";		   // 왼쪽이 카피
+			std::cout << ((Cat *)Animals[5])->getBrain()->getIdea(i) << std::endl; // 오른쪽이 원본
+		}
+		std::cout << "-----------------------------\n"
+				  << std::endl;
+		for (int i = 0; i < 10; ++i)
+		{
+			delete Animals[i];
+		}
+	}
+	system("leaks Brain");
 }

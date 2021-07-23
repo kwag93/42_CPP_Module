@@ -1,26 +1,23 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/27 10:22:35 by bkwag             #+#    #+#             */
-/*   Updated: 2021/06/27 11:07:57 by bkwag            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "Peon.hpp"
-#include "Sorcerer.hpp"
-#include "Victim.hpp"
+#include "Dog.hpp"
+#include "Cat.hpp"
+#include "WrongCat.hpp"
 
 int main()
 {
-	Sorcerer robert("Robert", "the Magnificent");
-	Victim jim("Jimmy");
-	Peon joe("Joe");
-	std::cout << robert << jim << joe;
-	robert.polymorph(jim);
-	robert.polymorph(joe);
+	const Animal *meta = new Animal();
+	const Animal *j = new Dog();
+	const Animal *i = new Cat();
+	std::cout << j->getType() << " " << std::endl;
+	std::cout << i->getType() << " " << std::endl;
+	j->makeSound(); //will output the cat sound!
+	i->makeSound();
+	meta->makeSound();
+
+	const WrongAnimal *k = new WrongCat();
+	k->makeSound();
+	delete meta;
+	delete i;
+	delete j;
+	delete k;
 	return 0;
 }
