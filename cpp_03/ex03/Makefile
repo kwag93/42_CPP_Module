@@ -6,7 +6,7 @@
 #    By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/16 14:49:41 by bkwag             #+#    #+#              #
-#    Updated: 2021/07/19 15:06:58 by bkwag            ###   ########.fr        #
+#    Updated: 2021/07/24 09:49:26 by bkwag            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ OBJS			= $(SRCS:.cpp=.o)
 
 CXX				= clang++
 RM				= rm -f
-CXXFLAGS		= -Wall -Wextra -Werror -I.
+CXXFLAGS		= -Wall -Wextra -Werror -I. -Wshadow -Wno-shadow
 
 NAME			= DiamondTrap
 
