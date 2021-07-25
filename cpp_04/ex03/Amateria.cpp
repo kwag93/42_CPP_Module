@@ -12,16 +12,32 @@
 
 #include "AMateria.hpp"
 
-AMateria::AMateria()
+AMateria::AMateria():_type(""),_xp(0)
 {
+	std::cout<<"Default Constructor AMateria"<<std::endl;
 }
 
 AMateria::AMateria(std::string const & type):_type(type),_xp(0)
 {
+	std::cout<<"Constructor AMateria"<<std::endl;
 }
 
 AMateria::~AMateria()
 {
+	std::cout<<"Destructor AMateria"<<std::endl;
+}
+
+AMateria::AMateria(const AMateria &character)
+{
+	std::cout<<"Copy AMateria"<<std::endl;
+	this->_xp = character._xp;
+}
+
+AMateria &AMateria::operator=(AMateria const &character)
+{
+	std::cout<<"Copy AMateria"<<std::endl;
+	this->_xp = character._xp;
+	return *this;
 }
 
 std::string const &AMateria::getType() const

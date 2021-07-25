@@ -29,18 +29,5 @@ int main()
 			delete Animals[i];
 		}
 	}
-	{
-		std::cout << "\n-----------------------------\n"
-				  << std::endl;
-
-		Dog *dog = new Dog();
-		Cat *cat = new Cat();
-
-		dog->makeSound();
-		cat->makeSound();
-
-		delete dog;
-		delete cat;
-	}
 	system("leaks abstract");
 }

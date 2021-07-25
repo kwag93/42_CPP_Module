@@ -3,32 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hyunyoo <hyunyoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 14:04:33 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/24 09:42:20 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/25 20:39:47 by hyunyoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
 
-Character::Character()
+Character::Character():name("")
 {
+	std::cout<<"Default Constructor Character"<<std::endl;
 }
 
 Character::Character(std::string name) : name(name)
 {
+	std::cout<<"Constructor Character"<<std::endl;
 	for (int i = 0; i < 4; i++)
 	{
-		this->inventory[i] = nullptr;
+		this->inventory[i] = 0;
 	}
 }
 
 Character::~Character()
 {
+	std::cout<<"Destructor Character"<<std::endl;
 	for (int i = 0; i < 4; i++)
 	{
-		if (this->inventory[i] != nullptr)
+		if (this->inventory[i] != 0)
 		{
 			delete this->inventory[i];
 		}
@@ -37,6 +40,7 @@ Character::~Character()
 
 Character::Character(const Character &character)
 {
+	std::cout<<"Copy Character"<<std::endl;
 	this->name = character.name;
 	for (int i = 0; i < 4; i++)
 	{
@@ -47,6 +51,7 @@ Character::Character(const Character &character)
 
 Character &Character::operator=(Character const &character)
 {
+	std::cout<<"= operator Character"<<std::endl;
 	this->name = character.name;
 	for (int i = 0; i < 4; i++)
 	{
@@ -63,7 +68,7 @@ std::string const &Character::getName() const
 
 void Character::equip(AMateria *m)
 {
-	if (m == nullptr)
+	if (m == 0)
 		return;
 	for (int i = 0; i < 4; i++)
 	{
@@ -81,7 +86,7 @@ void Character::unequip(int idx)
 		return;
 	if (this->inventory[idx])
 	{
-		this->inventory[idx] = nullptr;
+		this->inventory[idx] = 0;
 	}
 }
 

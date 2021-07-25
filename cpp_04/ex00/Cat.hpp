@@ -12,7 +12,7 @@ public:
 	Cat(const Cat &copy);
 	Cat &operator=(const Cat &copy);
 	std::string getType() const;
-	virtual void makeSound() const;
+	void makeSound() const;
 };
 
 #endif

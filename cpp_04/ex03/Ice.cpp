@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Ice.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hyunyoo <hyunyoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 14:04:41 by bkwag             #+#    #+#             */
-/*   Updated: 2021/06/30 16:30:59 by marvin           ###   ########.fr       */
+/*   Updated: 2021/07/25 20:43:22 by hyunyoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,24 @@
 
 Ice::Ice():AMateria("ice")
 {
+	std::cout<<"Default Constructor Ice"<<std::endl;
 }
 
 Ice::~Ice()
 {
-
+	std::cout<<"Constructor Ice"<<std::endl;
 }
 
-Ice::Ice(Ice const &ice):AMateria(ice.getType())
+Ice::Ice(Ice const &ice):AMateria(ice)
 {
+
+	std::cout<<"Copy Ice"<<std::endl;
 	this->_xp = ice.getXP();
 }
 
 Ice &Ice::operator=(Ice const &ice)
 {
+	std::cout<<"= Operator Ice"<<std::endl;
 	this->_xp = ice.getXP();
 	return (*this);
 }

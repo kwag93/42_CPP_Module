@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cure.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hyunyoo <hyunyoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 14:04:37 by bkwag             #+#    #+#             */
-/*   Updated: 2021/06/30 16:28:45 by marvin           ###   ########.fr       */
+/*   Updated: 2021/07/25 20:42:54 by hyunyoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,23 @@
 
 Cure::Cure():AMateria("cure")
 {
+	std::cout<<"Default Constructor Cure"<<std::endl;
 }
 
 Cure::~Cure()
 {
-
+	std::cout<<"Destructor Cure"<<std::endl;
 }
 
-Cure::Cure(Cure const &cure):AMateria(cure.getType())
+Cure::Cure(Cure const &cure):AMateria(cure)
 {
+	std::cout<<"Copy Cure"<<std::endl;
 	this->_xp = cure.getXP();
 }
 
 Cure &Cure::operator=(Cure const &cure)
 {
+	std::cout<<"= Operator Cure"<<std::endl;
 	this->_xp = cure.getXP();
 	return (*this);
 }
