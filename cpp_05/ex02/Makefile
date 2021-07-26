@@ -6,7 +6,7 @@
 #    By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/16 14:49:41 by bkwag             #+#    #+#              #
-#    Updated: 2021/07/19 15:59:50 by bkwag            ###   ########.fr        #
+#    Updated: 2021/07/26 11:26:53 by bkwag            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ RM				= rm -f
 CXXFLAGS		= -Wall -Wextra -Werror -I.
 
 NAME			= 28B_not_28C
+
 
 all:			$(NAME)
 

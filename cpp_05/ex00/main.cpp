@@ -6,7 +6,7 @@
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 10:01:26 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/01 11:25:13 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/26 11:09:21 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main(void)
 		Bureaucrat jack("Jack", 0);
 		std::cout << jack << std::endl;
 	}
-	catch(std::exception const &e)
+	catch (std::exception const &e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
@@ -37,7 +37,7 @@ int main(void)
 		Bureaucrat jack("Jack", 1000);
 		std::cout << jack << std::endl;
 	}
-	catch(std::exception const &e)
+	catch (std::exception const &e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
@@ -49,7 +49,7 @@ int main(void)
 		jack.increaseGrade();
 		std::cout << jack << std::endl;
 	}
-	catch(std::exception const &e)
+	catch (std::exception const &e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
@@ -61,7 +61,7 @@ int main(void)
 		jack.decreaseGrade();
 		std::cout << jack << std::endl;
 	}
-	catch(std::exception const &e)
+	catch (std::exception const &e)
 	{
 		std::cerr << e.what() << std::endl;
 	}

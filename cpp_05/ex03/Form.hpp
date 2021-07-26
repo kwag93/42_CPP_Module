@@ -6,16 +6,16 @@
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 10:03:20 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/19 16:04:56 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/26 11:09:16 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FORM_HPP
-# define FORM_HPP
+#define FORM_HPP
 
-# include <iostream>
+#include <iostream>
 class Form;
-# include "Bureaucrat.hpp"
+#include "Bureaucrat.hpp"
 
 class Form
 {
@@ -24,11 +24,13 @@ private:
 	bool is_signed;
 	int const signGrade;
 	int const executeGrade;
+
 public:
- 	Form(std::string name, int sign, int execute);
+	Form();
+	Form(std::string name, int sign, int execute);
 	~Form();
-	Form(const Form & other);
-	Form &operator=(const Form& form);
+	Form(const Form &other);
+	Form &operator=(const Form &form);
 	std::string const getName() const;
 	int getSignGrade() const;
 	int getExecuteGrade() const;
@@ -36,20 +38,20 @@ public:
 	void beSigned(Bureaucrat &bur);
 	class GradeTooHighException : public std::exception
 	{
-		public:
-			virtual const char *what() const throw();
+	public:
+		virtual const char *what() const throw();
 	};
 	class GradeTooLowException : public std::exception
 	{
-		public:
-			virtual const char *what() const throw();
+	public:
+		virtual const char *what() const throw();
 	};
 	class NotSignedException : public std::exception
 	{
-		public:
-			virtual const char *what() const throw();
+	public:
+		virtual const char *what() const throw();
 	};
-	virtual bool execute(Bureaucrat const & executor) const = 0;
+	virtual bool execute(Bureaucrat const &executor) const = 0;
 };
 
 std::ostream &operator<<(std::ostream &out, Form const &from);

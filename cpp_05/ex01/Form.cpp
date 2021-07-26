@@ -12,35 +12,36 @@
 
 #include "Form.hpp"
 
-Form::Form(std::string name, int sign, int execute):
-	name(name), signGrade(sign), executeGrade(execute)
+Form::Form() : name(""), signGrade(149), executeGrade(149)
 {
-	if(sign < 1 || execute < 1)
+}
+
+Form::Form(std::string name, int sign, int execute) : name(name), signGrade(sign), executeGrade(execute)
+{
+	if (sign < 1 || execute < 1)
 		throw Form::GradeTooHighException();
-	if(sign > 150 || execute > 150)
+	if (sign > 150 || execute > 150)
 		throw Form::GradeTooLowException();
 }
 
 Form::~Form()
 {
-
 }
 
-Form::Form(const Form & other):
-	name(other.name), signGrade(other.signGrade), executeGrade(other.executeGrade)
+Form::Form(const Form &other) : name(other.name), signGrade(other.signGrade), executeGrade(other.executeGrade)
 {
-	if(signGrade < 1 || executeGrade < 1)
+	if (signGrade < 1 || executeGrade < 1)
 		throw Form::GradeTooHighException();
-	if(signGrade > 150 || executeGrade > 150)
+	if (signGrade > 150 || executeGrade > 150)
 		throw Form::GradeTooLowException();
 }
 
-Form &Form::operator=(const Form& form)
+Form &Form::operator=(const Form &form)
 {
 	this->is_signed = form.is_signed;
-	if(signGrade < 1 || executeGrade < 1)
+	if (signGrade < 1 || executeGrade < 1)
 		throw Form::GradeTooHighException();
-	if(signGrade > 150 || executeGrade > 150)
+	if (signGrade > 150 || executeGrade > 150)
 		throw Form::GradeTooLowException();
 	return (*this);
 }
@@ -65,12 +66,12 @@ bool Form::getSigned() const
 	return this->is_signed;
 }
 
-const char* Form::GradeTooHighException::what() const throw()
+const char *Form::GradeTooHighException::what() const throw()
 {
 	return "FormException: Grade too High";
 }
 
-const char* Form::GradeTooLowException::what() const throw()
+const char *Form::GradeTooLowException::what() const throw()
 {
 	return "FormException: Grade too Low";
 }
@@ -86,8 +87,8 @@ void Form::beSigned(Bureaucrat &bur)
 std::ostream &operator<<(std::ostream &out, Form const &form)
 {
 	out << "(" << form.getName() << "), sign grade : "
-	 << form.getSignGrade() << ", execute grade : "<< form.getExecuteGrade()
-	 <<", signed : "<<form.getSigned();
+		<< form.getSignGrade() << ", execute grade : " << form.getExecuteGrade()
+		<< ", signed : " << form.getSigned();
 
 	return out;
 }
