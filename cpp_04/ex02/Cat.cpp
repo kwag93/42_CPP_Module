@@ -16,14 +16,16 @@ Cat::Cat(const Cat &copy)
 {
 	std::cout << "Copy Cat" << std::endl;
 	this->type = copy.type;
-	this->brain = copy.brain;
+	delete brain;
+	this->brain = new Brain(*copy.brain);
 }
 
 Cat &Cat::operator=(const Cat &copy)
 {
 	std::cout << "Assignment Cat" << std::endl;
 	this->type = copy.type;
-	this->brain = copy.brain;
+	delete brain;
+	this->brain = new Brain(*copy.brain);
 	return *this;
 }
 
