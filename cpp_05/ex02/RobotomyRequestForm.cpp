@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hyunyoo <hyunyoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/01 10:04:36 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/26 11:07:19 by bkwag            ###   ########.fr       */
+/*   Created: 2021/07/26 18:21:27 by hyunyoo           #+#    #+#             */
+/*   Updated: 2021/07/26 21:44:52 by hyunyoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &p
 
 bool RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
-	srand(time(NULL));
-
-	if (executor.getGrade() > this->getExecuteGrade())
+	if (!this->getSigned())
+		throw Form::NotSignedException();
+	if(this->getExecuteGrade() < executor.getGrade())
 		throw Form::GradeTooLowException();
 	std::cout << " dudududududdu... dududududududu.. " << std::endl;
 	int random = rand() % 100;

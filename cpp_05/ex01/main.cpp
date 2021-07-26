@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hyunyoo <hyunyoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/01 10:01:26 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/01 12:23:51 by marvin           ###   ########.fr       */
+/*   Created: 2021/07/26 18:18:16 by hyunyoo           #+#    #+#             */
+/*   Updated: 2021/07/26 22:05:52 by hyunyoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@ void    _test(std::string const& name_bure, int grade,
 
         Bureaucrat  bure(name_bure, grade);
         Form        form(name_form, sign_grade, exec_grade);
-        std::cout << bure;
+        std::cout << bure << std::endl;
         bure.signForm(form);
-        std::cout << form;
-        std::cout << std::endl;
+        std::cout << form << std::endl;
     }
     catch (std::exception& e) {
         std::cout << "Error: " << e.what() << std::endl;
@@ -33,14 +32,14 @@ void    _test(std::string const& name_bure, int grade,
 
 int main() {
     std::cout << "<TEST FORM>" << std::endl;
-    _test("Akira", 10, "test1", 100, 100);
-    _test("Tetsuo", 100, "test1", 10, 10);
-    _test("Kiyoko", 100, "test1", -10, 10);
-    _test("Takashi", 100, "test1", 10, -10);
-    _test("Masaru", 100, "test1", 10, 999);
-    _test("Taisa", 100, "test1", 999, 10);
-    _test("A", 999, "test1", 999, 999);
-    _test("B", -999, "test1", 999, 999);
-    _test("C", 100, "test1", -999, -999);
+    _test("Kirito", 10, "test1", 100, 100);
+    _test("Asuna", 100, "test1", 10, 10);
+    _test("Sinnosuke", 100, "test1", -10, 10);
+    _test("Sinichi", 100, "test1", 10, -10);
+    _test("Edogawa", 100, "test1", 10, 999);
+    _test("Taichi", 100, "test1", 999, 10);
+    _test("Tohru", 999, "test1", 999, 999);
+    _test("Kanna", -999, "test1", 999, 999);
+    _test("Saitama", 100, "test1", -999, -999);
     return 0;
 }

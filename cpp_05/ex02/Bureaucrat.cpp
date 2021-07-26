@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hyunyoo <hyunyoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/01 10:01:24 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/26 11:17:29 by bkwag            ###   ########.fr       */
+/*   Created: 2021/07/26 18:20:30 by hyunyoo           #+#    #+#             */
+/*   Updated: 2021/07/26 22:08:06 by hyunyoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,16 @@ const char *Bureaucrat::GradeTooLowException::what() const throw()
 
 void Bureaucrat::increaseGrade()
 {
-	if (this->grade == 150)
-		throw Bureaucrat::GradeTooLowException();
-	this->grade++;
+	if (this->grade == 1)
+		throw Bureaucrat::GradeTooHighException();
+	this->grade--;
 }
 
 void Bureaucrat::decreaseGrade()
 {
-	if (this->grade == 1)
-		throw Bureaucrat::GradeTooHighException();
-	this->grade--;
+	if (this->grade == 150)
+		throw Bureaucrat::GradeTooLowException();
+	this->grade++;
 }
 
 std::string Bureaucrat::getName() const
@@ -86,11 +86,16 @@ int Bureaucrat::getGrade() const
 void Bureaucrat::signForm(Form &form)
 {
 	if (form.getSigned())
-		std::cout << *this << " cannot sign " << form << " because the form is already signed." << std::endl;
+	{
+		std::cout << this->name << " cannot sign " << form.getName() << " because the form is already signed." << std::endl;
+		return;
+	}
 	else if (this->grade > form.getSignGrade())
-		std::cout << *this << " cannot sign " << form << " because grade is low." << std::endl;
-	else
-		std::cout << *this << " signs " << form << std::endl;
+	{
+		std::cout << this->name << " cannot sign " << form.getName() << " because grade is low." << std::endl;
+		return;
+	}
+	std::cout << this->name << " signs " << form.getName() << std::endl;
 	form.beSigned(*this);
 }
 

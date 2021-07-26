@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hyunyoo <hyunyoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/01 10:04:53 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/26 11:08:22 by bkwag            ###   ########.fr       */
+/*   Created: 2021/07/26 18:25:45 by hyunyoo           #+#    #+#             */
+/*   Updated: 2021/07/26 21:45:28 by hyunyoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ bool ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
 	if (!this->getSigned())
 		throw Form::NotSignedException();
-	if (executor.getGrade() > this->getExecuteGrade())
+	if (this->getExecuteGrade() < executor.getGrade())
 		throw Form::GradeTooLowException();
 	std::string const shrubName = (this->target + "_shrubbery");	 // file name
 	std::ofstream outfile(shrubName, std::ios::out | std::ios::app); //출력

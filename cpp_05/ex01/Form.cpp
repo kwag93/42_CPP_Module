@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hyunyoo <hyunyoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/01 10:03:18 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/01 12:10:109 by marvin           ###   ########.fr       */
+/*   Created: 2021/07/26 18:18:01 by hyunyoo           #+#    #+#             */
+/*   Updated: 2021/07/26 22:26:43 by hyunyoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
-Form::Form() : name(""), signGrade(149), executeGrade(149)
+Form::Form() : name(""), is_signed(false), signGrade(149), executeGrade(149)
 {
 }
 
-Form::Form(std::string name, int sign, int execute) : name(name), signGrade(sign), executeGrade(execute)
+Form::Form(std::string name, int sign, int execute) : name(name), is_signed(false), signGrade(sign), executeGrade(execute)
 {
 	if (sign < 1 || execute < 1)
 		throw Form::GradeTooHighException();
@@ -78,7 +78,7 @@ const char *Form::GradeTooLowException::what() const throw()
 
 void Form::beSigned(Bureaucrat &bur)
 {
-	if (this->signGrade > bur.getGrade())
+	if (this->signGrade >= bur.getGrade())
 		this->is_signed = 1;
 	else
 		throw Form::GradeTooLowException();

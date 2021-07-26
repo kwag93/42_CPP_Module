@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hyunyoo <hyunyoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/01 10:01:26 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/01 16:07:14 by bkwag            ###   ########.fr       */
+/*   Created: 2021/07/26 18:22:29 by hyunyoo           #+#    #+#             */
+/*   Updated: 2021/07/26 22:31:54 by hyunyoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,29 @@
 void    _test_intern(std::string const& name, std::string const& target) {
     Intern      someRandomIntern;
     Form*       rrf;
-    Bureaucrat  bure("Akira", 1);
+    Bureaucrat  bure("Kobayashi", 60);
 
     rrf = someRandomIntern.makeForm(name, target);
 
     if (rrf) {
-        std::cout << bure;
-        bure.signForm(*rrf);
-        std::cout << *rrf <<std::endl;
-        bure.executeForm(*rrf);
-        std::cout << std::endl;
+        try{
+            std::cout << bure;
+            bure.signForm(*rrf);
+            std::cout << *rrf <<std::endl;
+            bure.executeForm(*rrf);
+            std::cout << std::endl;
+        }
+        catch (std::exception &e)
+	    {
+            std::cout << "Error: " << e.what() << std::endl;
+		    std::cout << std::endl;
+	    }
     }
 }
 
 int main() {
+    srand(time(NULL));
+
     std::cout << "<SHURUBBERY TESTS>" << std::endl;
     _test_intern("shrubbery creation", "Bender");
     _test_intern("robotomy request", "Bender");
