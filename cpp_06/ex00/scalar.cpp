@@ -176,7 +176,7 @@ void Scalar::FromDouble()
 	ss << this->str;
 	ss >> this->dvalue;
 
-	long lvalue = static_cast<long>(this->fvalue); //max,min을 float로 변환하면 6자리 이하의 세세한 숫자는 버려질 가능성이 있어서 fvalue를 int보다 범위가 큰 long형으로 바꿔서 max, min과 비교한다.
+	long lvalue = static_cast<long>(this->dvalue); //max,min을 float로 변환하면 6자리 이하의 세세한 숫자는 버려질 가능성이 있어서 fvalue를 int보다 범위가 큰 long형으로 바꿔서 max, min과 비교한다.
 
 	if (lvalue > static_cast<long>(INT_MAX) || lvalue < static_cast<long>(INT_MIN))
 	{
@@ -188,7 +188,7 @@ void Scalar::FromDouble()
 	else if (lvalue == INT_MIN)
 		this->ivalue = INT_MIN;
 	else
-		this->ivalue = static_cast<int>(this->fvalue);
+		this->ivalue = static_cast<int>(this->dvalue);
 	this->ivalue = static_cast<int>(this->dvalue);
 	this->fvalue = static_cast<float>(this->dvalue);
 	this->cvalue = static_cast<char>(this->dvalue);
