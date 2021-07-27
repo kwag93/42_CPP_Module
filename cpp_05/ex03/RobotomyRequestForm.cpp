@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hyunyoo <hyunyoo@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/26 18:25:35 by hyunyoo           #+#    #+#             */
-/*   Updated: 2021/07/27 11:00:51 by hyunyoo          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "RobotomyRequestForm.hpp"
 
 RobotomyRequestForm::RobotomyRequestForm() : Form("RobotomyRequestForm", 72, 45), target("")
@@ -38,7 +26,7 @@ bool RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
 	if (!this->getSigned())
 		throw Form::NotSignedException();
-	if(this->getExecuteGrade() < executor.getGrade())
+	if (this->getExecuteGrade() < executor.getGrade())
 		throw Bureaucrat::GradeTooLowException();
 	std::cout << " dudududududdu... dududududududu.. " << std::endl;
 	int random = rand() % 100;

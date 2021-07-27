@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hyunyoo <hyunyoo@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/26 18:21:17 by hyunyoo           #+#    #+#             */
-/*   Updated: 2021/07/26 18:21:17 by hyunyoo          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef PRESIDENTIALPARDONFORM_HPP
 #define PRESIDENTIALPARDONFORM_HPP
 

@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: hyunyoo <hyunyoo@student.42.fr>            +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/07/26 18:21:05 by hyunyoo           #+#    #+#              #
-#    Updated: 2021/07/27 10:34:15 by hyunyoo          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 SRCS			= Bureaucrat.cpp Form.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp main.cpp
 OBJS			= $(SRCS:.cpp=.o)
 
