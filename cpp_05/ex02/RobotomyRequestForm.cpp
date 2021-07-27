@@ -6,7 +6,7 @@
 /*   By: hyunyoo <hyunyoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 18:21:27 by hyunyoo           #+#    #+#             */
-/*   Updated: 2021/07/26 21:44:52 by hyunyoo          ###   ########.fr       */
+/*   Updated: 2021/07/27 10:59:41 by hyunyoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,16 @@ bool RobotomyRequestForm::execute(Bureaucrat const &executor) const
 	if (!this->getSigned())
 		throw Form::NotSignedException();
 	if(this->getExecuteGrade() < executor.getGrade())
-		throw Form::GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	std::cout << " dudududududdu... dududududududu.. " << std::endl;
 	int random = rand() % 100;
 	if (random > 50)
 	{
 		std::cout << this->target << " has been robotomized successfully." << std::endl;
-		return true;
 	}
 	else
 	{
 		std::cout << this->target << " failed to be robotomize." << std::endl;
-		return false;
 	}
+	return true;
 }

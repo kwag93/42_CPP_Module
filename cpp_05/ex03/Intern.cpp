@@ -6,17 +6,17 @@
 /*   By: hyunyoo <hyunyoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 18:22:14 by hyunyoo           #+#    #+#             */
-/*   Updated: 2021/07/26 18:22:14 by hyunyoo          ###   ########.fr       */
+/*   Updated: 2021/07/27 11:03:57 by hyunyoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Intern.hpp"
 
 Intern::formType_ const Intern::formTypeList_[] =
-	{
-		{"shrubbery creation", &Intern::makeShrubberyCreationForm_},
-		{"presidential pardon", &Intern::makePresidentialPardonForm_},
-		{"robotomy request", &Intern::makeRobotomyRequestForm_},
+{
+	{"shrubbery creation", &Intern::makeShrubberyCreationForm_},
+	{"presidential pardon", &Intern::makePresidentialPardonForm_},
+	{"robotomy request", &Intern::makeRobotomyRequestForm_},
 };
 
 Intern::Intern()

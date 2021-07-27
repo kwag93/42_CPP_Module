@@ -6,7 +6,7 @@
 /*   By: hyunyoo <hyunyoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 18:21:00 by hyunyoo           #+#    #+#             */
-/*   Updated: 2021/07/26 22:14:18 by hyunyoo          ###   ########.fr       */
+/*   Updated: 2021/07/27 10:41:26 by hyunyoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void _test_shrubbery(std::string const &name_bure,
 		Bureaucrat bure(name_bure, grade);
 		ShrubberyCreationForm form(target);
 
-		form.beSigned(bure);
+		bure.signForm(form);
 		std::cout << form << std::endl;
 		form.execute(bure);
 		std::cout << std::endl;
@@ -49,7 +49,7 @@ void _test_robotomy(std::string const &name_bure,
 		Bureaucrat bure(name_bure, grade);
 		RobotomyRequestForm form(target);
 
-		form.beSigned(bure);
+		bure.signForm(form);
 		std::cout << form << std::endl;
 		form.execute(bure);
 		std::cout << std::endl;
@@ -71,7 +71,7 @@ void _test_presidential(std::string const &name_bure,
 		Bureaucrat bure(name_bure, grade);
 		PresidentialPardonForm form(target);
 
-		form.beSigned(bure);
+		bure.signForm(form);
 		std::cout << form << std::endl;
 		form.execute(bure);
 		std::cout << std::endl;
