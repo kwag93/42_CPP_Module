@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
+#    By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/04 10:43:54 by bkwag             #+#    #+#              #
-#    Updated: 2021/07/04 11:04:51 by marvin           ###   ########.fr        #
+#    Updated: 2021/07/27 11:43:15 by bkwag            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS			= main.cpp
+SRCS			= main.cpp Base.cpp
 OBJS			= $(SRCS:.cpp=.o)
 
 CXX				= clang++

@@ -22,7 +22,7 @@ Data *deserialize(uintptr_t raw)
 	return reinterpret_cast<Data *>(raw);
 }
 
-Data::Data()
+Data::Data() : str1(""), str2(""), num(0)
 {
 	std::cout << "Default constructor" << std::endl;
 }
