@@ -59,7 +59,7 @@ void Scalar::Print()
 
 void Scalar::PrintChar()
 {
-	if (this->nan_float_flag || this->nan_double_flag || this->over_flag)
+	if (this->nan_float_flag || this->nan_double_flag || (this->over_flag || this->ivalue < 0 || this->ivalue > 127))
 		std::cout << "impossible";
 	else if (this->cvalue < 32 || this->cvalue > 126)
 		std::cout << "Non displayable";
@@ -71,7 +71,7 @@ void Scalar::PrintChar()
 
 void Scalar::PrintInt()
 {
-	if (this->nan_float_flag || this->nan_double_flag)
+	if (this->nan_float_flag || this->nan_double_flag || this->over_flag)
 		std::cout << "impossible";
 	else
 		std::cout << this->ivalue;
@@ -88,7 +88,11 @@ void Scalar::PrintFloat()
 	else
 	{
 		ss << this->fvalue;
-		if (ss.str().find('.') != std::string::npos)
+		if (isinf(this->fvalue))
+		{
+			std::cout << this->fvalue << "f";
+		}
+		else if (ss.str().find('.') != std::string::npos)
 			std::cout << this->fvalue << "f";
 		else
 			std::cout << this->fvalue << ".0f";
@@ -109,7 +113,11 @@ void Scalar::PrintDouble()
 	else
 	{
 		ss << this->dvalue;
-		if (ss.str().find('.') != std::string::npos)
+		if (isinf(this->dvalue))
+		{
+			std::cout << this->dvalue;
+		}
+		else if (ss.str().find('.') != std::string::npos)
 			std::cout << this->dvalue;
 		else
 			std::cout << this->dvalue << ".0";
@@ -124,13 +132,7 @@ void Scalar::FromInteger()
 	ss << this->str;
 	ss >> number;
 
-	if (number >= INT_MAX || number <= INT_MIN)
-	{
-		std::cout << "the conversion is impossible" << std::endl;
-		this->impossible_flag = true;
-		return;
-	}
-	if (number >= CHAR_MAX || number <= CHAR_MIN)
+	if (number > INT_MAX || number < INT_MIN)
 	{
 		this->over_flag = true;
 	}
@@ -149,17 +151,20 @@ void Scalar::FromFloat()
 	ss << this->str;
 	ss >> this->fvalue;
 
-	if (this->fvalue >= INT_MAX || this->fvalue <= INT_MIN)
-	{
-		std::cout << "the conversion is impossible" << std::endl;
-		this->impossible_flag = true;
-		return;
-	}
-	if (this->fvalue >= CHAR_MAX || this->fvalue <= CHAR_MIN)
+	if (this->fvalue > INT_MAX || this->fvalue < INT_MIN)
 	{
 		this->over_flag = true;
 	}
-	this->ivalue = static_cast<int>(this->fvalue);
+	// reference https://stackoverflow.com/questions/36432173/efficient-float-to-int-without-overflow
+	float max = static_cast<float>(INT_MAX); // fvalue가 오차가 있을 수도 있어서 그대로 int로 바꿔주면 오버플로우가 발생해서
+	float min = static_cast<float>(INT_MIN); // int_max, int_min을 float로 바꿔서 fvalue와 비교한 다음 min인지 max인지 판단을 한다.
+
+	if (max == this->fvalue)
+		this->ivalue = INT_MAX;
+	else if (min == this->fvalue)
+		this->ivalue = INT_MIN;
+	else
+		this->ivalue = static_cast<int>(this->fvalue);
 	this->dvalue = static_cast<double>(this->fvalue);
 	this->cvalue = static_cast<char>(this->fvalue);
 }
@@ -172,16 +177,20 @@ void Scalar::FromDouble()
 	ss << this->str;
 	ss >> this->dvalue;
 
-	if (this->dvalue >= INT_MAX || this->dvalue <= INT_MIN)
-	{
-		std::cout << "the conversion is impossible" << std::endl;
-		this->impossible_flag = true;
-		return;
-	}
-	if (this->dvalue >= CHAR_MAX || this->dvalue <= CHAR_MIN)
+	if (this->dvalue > INT_MAX || this->dvalue < INT_MIN)
 	{
 		this->over_flag = true;
 	}
+	// reference https://stackoverflow.com/questions/36432173/efficient-float-to-int-without-overflow
+	double max = static_cast<double>(INT_MAX); // fvalue가 오차가 있을 수도 있어서 그대로 int로 바꿔주면 오버플로우가 발생해서
+	double min = static_cast<double>(INT_MIN); // int_max, int_min을 float로 바꿔서 fvalue와 비교한 다음 min인지 max인지 판단을 한다.
+
+	if (max <= this->dvalue)
+		this->ivalue = INT_MAX;
+	else if (min >= this->dvalue)
+		this->ivalue = INT_MIN;
+	else
+		this->ivalue = static_cast<int>(this->dvalue);
 	this->ivalue = static_cast<int>(this->dvalue);
 	this->fvalue = static_cast<float>(this->dvalue);
 	this->cvalue = static_cast<char>(this->dvalue);
@@ -228,12 +237,12 @@ void Scalar::conversion(void)
 
 char Scalar::parse(void)
 {
-	if (this->str == "nanf" || this->str == "-inff" || this->str == "+inff")
+	if (this->str == "nanf" || this->str == "-inff" || this->str == "+inff" || this->str == "inff")
 	{
 		this->nan_float_flag = true;
 		return 'f';
 	}
-	if (this->str == "nan" || this->str == "-inf" || this->str == "+inf")
+	if (this->str == "nan" || this->str == "-inf" || this->str == "+inf" || this->str == "inf")
 	{
 		this->nan_double_flag = true;
 		return 'd';
