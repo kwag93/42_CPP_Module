@@ -18,18 +18,18 @@ Form::~Form()
 
 Form::Form(const Form &other) : name(other.name), signGrade(other.signGrade), executeGrade(other.executeGrade)
 {
-	if (signGrade < 1 || executeGrade < 1)
+	if (this->signGrade < 1 || this->executeGrade < 1)
 		throw Form::GradeTooHighException();
-	if (signGrade > 150 || executeGrade > 150)
+	if (this->signGrade > 150 || this->executeGrade > 150)
 		throw Form::GradeTooLowException();
 }
 
 Form &Form::operator=(const Form &form)
 {
 	this->is_signed = form.is_signed;
-	if (signGrade < 1 || executeGrade < 1)
+	if (this->signGrade < 1 || this->executeGrade < 1)
 		throw Form::GradeTooHighException();
-	if (signGrade > 150 || executeGrade > 150)
+	if (this->signGrade > 150 || this->executeGrade > 150)
 		throw Form::GradeTooLowException();
 	return (*this);
 }
