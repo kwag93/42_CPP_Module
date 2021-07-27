@@ -6,15 +6,14 @@
 /*   By: hyunyoo <hyunyoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 18:17:51 by hyunyoo           #+#    #+#             */
-/*   Updated: 2021/07/26 22:01:57 by hyunyoo          ###   ########.fr       */
+/*   Updated: 2021/07/27 10:31:28 by hyunyoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat() : name(""), grade(0)
+Bureaucrat::Bureaucrat() : name(""), grade(1)
 {
-	std::cout << "Default constructor Bureaucrat" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : name(name)
