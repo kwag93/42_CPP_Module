@@ -151,17 +151,16 @@ void Scalar::FromFloat()
 	ss << this->str;
 	ss >> this->fvalue;
 
-	if (this->fvalue > INT_MAX || this->fvalue < INT_MIN)
+	long lvalue = static_cast<long>(this->fvalue);
+
+	if (lvalue > static_cast<long>(INT_MAX) || lvalue < static_cast<long>(INT_MIN))
 	{
 		this->over_flag = true;
 	}
-	// reference https://stackoverflow.com/questions/36432173/efficient-float-to-int-without-overflow
-	float max = static_cast<float>(INT_MAX); // fvalue가 오차가 있을 수도 있어서 그대로 int로 바꿔주면 오버플로우가 발생해서
-	float min = static_cast<float>(INT_MIN); // int_max, int_min을 float로 바꿔서 fvalue와 비교한 다음 min인지 max인지 판단을 한다.
 
-	if (max == this->fvalue)
+	if (lvalue == INT_MAX)
 		this->ivalue = INT_MAX;
-	else if (min == this->fvalue)
+	else if (lvalue == INT_MIN)
 		this->ivalue = INT_MIN;
 	else
 		this->ivalue = static_cast<int>(this->fvalue);
@@ -177,20 +176,19 @@ void Scalar::FromDouble()
 	ss << this->str;
 	ss >> this->dvalue;
 
-	if (this->dvalue > INT_MAX || this->dvalue < INT_MIN)
+	long lvalue = static_cast<long>(this->fvalue); //max,min을 float로 변환하면 6자리 이하의 세세한 숫자는 버려질 가능성이 있어서 fvalue를 int보다 범위가 큰 long형으로 바꿔서 max, min과 비교한다.
+
+	if (lvalue > static_cast<long>(INT_MAX) || lvalue < static_cast<long>(INT_MIN))
 	{
 		this->over_flag = true;
 	}
-	// reference https://stackoverflow.com/questions/36432173/efficient-float-to-int-without-overflow
-	double max = static_cast<double>(INT_MAX); // fvalue가 오차가 있을 수도 있어서 그대로 int로 바꿔주면 오버플로우가 발생해서
-	double min = static_cast<double>(INT_MIN); // int_max, int_min을 float로 바꿔서 fvalue와 비교한 다음 min인지 max인지 판단을 한다.
 
-	if (max <= this->dvalue)
+	if (lvalue == INT_MAX)
 		this->ivalue = INT_MAX;
-	else if (min >= this->dvalue)
+	else if (lvalue == INT_MIN)
 		this->ivalue = INT_MIN;
 	else
-		this->ivalue = static_cast<int>(this->dvalue);
+		this->ivalue = static_cast<int>(this->fvalue);
 	this->ivalue = static_cast<int>(this->dvalue);
 	this->fvalue = static_cast<float>(this->dvalue);
 	this->cvalue = static_cast<char>(this->dvalue);
