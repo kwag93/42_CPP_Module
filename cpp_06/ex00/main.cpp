@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hyunyoo <hyunyoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 10:27:34 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/20 15:03:07 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/28 15:32:10 by hyunyoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ int main(int argc, char *argv[])
 	else
 	{
 		Scalar scalar(argv[1]);
-		scalar.Print();
+		scalar.PrintChar();
+		scalar.PrintInt();
+		scalar.PrintFloat();
+		scalar.PrintDouble();
 	}
+	return 0;
 }

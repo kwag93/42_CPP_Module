@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scalar.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hyunyoo <hyunyoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 10:48:48 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/27 21:34:36 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/28 14:39:11 by hyunyoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,40 @@
 #define SCALAR_HPP
 
 #include <iostream>
-#include <limits>
+#include <string>
+#include <cmath>
 #include <sstream>
 #include <iomanip>
-#include <cmath>
+
 class Scalar
 {
 private:
 	std::string str;
 
 public:
-	float fvalue;
-	int ivalue;
-	char cvalue;
-	double dvalue;
-	bool impossible_flag;
-	bool float_flag;
-	bool double_flag;
-	bool over_flag;
-	bool nan_float_flag;
-	bool nan_double_flag;
-	char type;
+    Scalar();
 	Scalar(const std::string &argv);
-	void Print();
-	char parse(void);
-	void conversion(void);
-	void FromInteger(void);
-	void FromFloat(void);
-	void FromDouble(void);
-	void FromChar(void);
-	void PrintChar(void);
-	void PrintInt(void);
-	void PrintFloat(void);
-	void PrintDouble(void);
+	~Scalar();
+    Scalar(const Scalar &other);
+    Scalar &operator=(const Scalar &scalar);
+	operator char(void) const;
+	operator int(void) const;
+	operator double(void) const;
+	operator float(void) const;
+	class ImpossibleException : public std::exception
+	{
+	public:
+		virtual const char *what() const throw();
+	};
+	class NonDisplayableException : public std::exception
+	{
+	public:
+		virtual const char *what() const throw();
+	};
+	void PrintInt();
+	void PrintChar();
+	void PrintFloat();
+	void PrintDouble();
 };
 
 #endif

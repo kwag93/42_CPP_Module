@@ -3,286 +3,214 @@
 /*                                                        :::      ::::::::   */
 /*   scalar.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hyunyoo <hyunyoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/02 10:56:50 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/200 15:05:20 by marvin           ###   ########.fr       */
+/*   Created: 2021/07/28 13:14:56 by hyunyoo           #+#    #+#             */
+/*   Updated: 2021/07/28 15:30:04 by hyunyoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scalar.hpp"
 
-int ft_isdigit(char c)
+Scalar::Scalar() : str("")
 {
-	return (c >= '0' && c <= '9');
-}
 
-int ft_isprint(int c)
-{
-	if (c >= 32 && c <= 126)
-		return (1);
-	return (0);
 }
 
 Scalar::Scalar(const std::string &argv)
 {
-	this->str = argv;
-	this->nan_float_flag = false;
-	this->nan_double_flag = false;
-	this->float_flag = false;
-	this->double_flag = false;
-	this->impossible_flag = false;
-	this->type = parse();
-	this->conversion();
-}
-
-void Scalar::Print()
-{
-	if (this->type == 'e' || this->impossible_flag)
-		return;
-	std::cout << "char: ";
-	this->PrintChar();
-	std::cout << std::endl;
-
-	std::cout << "int: ";
-	this->PrintInt();
-	std::cout << std::endl;
-
-	std::cout << "float: ";
-	this->PrintFloat();
-	std::cout << std::endl;
-
-	std::cout << "double: ";
-	this->PrintDouble();
-	std::cout << std::endl;
-}
-
-void Scalar::PrintChar()
-{
-	if (this->nan_float_flag || this->nan_double_flag || (this->over_flag || this->ivalue < 0 || this->ivalue > 127))
-		std::cout << "impossible";
-	else if (this->cvalue < 32 || this->cvalue > 126)
-		std::cout << "Non displayable";
+	if (argv.size() == 1 && argv.at(0) <= 127 && argv.at(0) >= -128 && (argv.at(0) < '0' || argv.at(0) > '9'))
+		this->str = std::to_string(argv.at(0));
 	else
+		this->str = argv;
+	return ;
+}
+
+Scalar::~Scalar()
+{
+	
+}
+
+Scalar::Scalar(const Scalar &other)
+{
+	this->str = other.str;
+}
+
+Scalar &Scalar::operator=(const Scalar &scalar)
+{
+	this->str = scalar.str;
+	return *this;
+}
+
+Scalar::operator char(void) const
+{
+	int		c;
+
+	try
 	{
-		std::cout << "'" << (char)(this->cvalue) << "'";
+		c = std::stoi(this->str); //일단 숫자로 변환이 되는지 체크(char < int여서 int로 받으면 char 범위 체크도 가능해진다.)
 	}
+	catch (std::exception &e)
+	{
+		throw(Scalar::ImpossibleException());
+	}
+	if (c < -128 || c > 127) //char 범위 초과
+		throw(Scalar::ImpossibleException());
+	else if (c < 32 || c > 126) //아스키코드 표현 범위 초과
+		throw(Scalar::NonDisplayableException());
+	return (static_cast<char>(c));
+	
+}
+
+Scalar::operator int(void) const
+{
+	int		i = 0;
+	
+	try
+	{
+		if (this->str.find('e') != std::string::npos)
+		{
+			double d;
+			d = std::stod(this->str);
+
+			if (d > INT_MAX || d < INT_MIN)
+				throw (Scalar::ImpossibleException());
+			else
+				i = static_cast<int>(d);
+		}
+		else
+			i = std::stoi(this->str); //일단 숫자로 변환이 되는지 체크(char < int여서 int로 받으면 char 범위 체크도 가능해진다.)
+	}
+	catch (std::exception &e)
+	{
+		throw (Scalar::ImpossibleException());
+	}
+	return (i);
+}
+Scalar::operator double(void) const
+{
+	double d = 0;
+
+	try
+	{
+		d = std::stod(this->str); //일단 숫자로 변환이 되는지 체크(char < int여서 int로 받으면 char 범위 체크도 가능해진다.)
+	}
+	catch (std::exception &e)
+	{
+		throw (Scalar::ImpossibleException());
+	}
+	return (d);
+}
+
+Scalar::operator float(void) const
+{
+	float f = 0;
+	
+	try //1.17549435×10-38 ~ 3.40282347× 1038
+	{
+		f = std::stof(this->str); //일단 숫자로 변환이 되는지 체크(char < int여서 int로 받으면 char 범위 체크도 가능해진다.)
+	}
+	catch (std::exception &e)
+	{
+		throw (Scalar::ImpossibleException());
+	}
+	return (f);
 }
 
 void Scalar::PrintInt()
 {
-	if (this->nan_float_flag || this->nan_double_flag || this->over_flag)
-		std::cout << "impossible";
-	else
-		std::cout << this->ivalue;
+	try{
+		std::cout<<"int      : ";
+		std::cout<<static_cast<int>(*this)<<std::endl;
+	}
+	catch(std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+}
+
+void Scalar::PrintChar()
+{
+	char c;
+	
+	try{
+		std::cout<<"char     : ";
+		c = static_cast<char>(*this);
+		std::cout << "'" << c << "'" << std::endl;
+	}
+	catch(std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 }
 
 void Scalar::PrintFloat()
 {
+	float f;
 	std::stringstream ss;
-
-	if (this->nan_float_flag)
-		std::cout << this->str;
-	else if (this->nan_double_flag)
-		std::cout << this->str << "f";
-	else
-	{
-		ss << this->fvalue;
-		if (isinf(this->fvalue))
+	
+	try{
+		std::cout<<"float    : ";
+		f = static_cast<float>(*this);
+		std::cout << f;
+		
+		if(!(std::isinf(f) || std::isnan(f)))
 		{
-			std::cout << this->fvalue << "f";
+			ss << std::setprecision(0) << std::scientific << f;
+			std::string temp = ss.str();
+			temp = temp.substr(temp.find('e')+1);
+			int length = std::stoi(temp);
+		
+			if(length >= 0 && length < 6)
+				if(fabs(f - round(f)) < 0.0001)
+					std::cout << ".0";
 		}
-		else if (ss.str().find('.') != std::string::npos)
-			std::cout << this->fvalue << "f";
-		else
-			std::cout << this->fvalue << ".0f";
+		std::cout << "f" << std::endl;
 	}
+	catch(std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
 }
 
 void Scalar::PrintDouble()
 {
+	double d;
 	std::stringstream ss;
+	
+	try{
+		std::cout<<"double   : ";
+		d = static_cast<double>(*this);
+		std::cout<< d;
 
-	if (this->nan_float_flag)
-	{
-		this->str[this->str.length() - 1] = '\0';
-		std::cout << this->str;
-	}
-	else if (this->nan_double_flag)
-		std::cout << this->str;
-	else
-	{
-		ss << this->dvalue;
-		if (isinf(this->dvalue))
+		if(!(std::isinf(d) || std::isnan(d)))
 		{
-			std::cout << this->dvalue;
+			ss << std::setprecision(0) << std::scientific << d;
+			std::string temp = ss.str();
+			temp = temp.substr(temp.find('e')+1);
+			int length = std::stoi(temp);
+			
+			if(length >= 0 && length < 6)
+				if(fabs(d - round(d)) < 0.0001)
+					std::cout << ".0";
 		}
-		else if (ss.str().find('.') != std::string::npos)
-			std::cout << this->dvalue;
-		else
-			std::cout << this->dvalue << ".0";
+		std::cout<<std::endl;
+	}
+	catch(std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
 	}
 }
 
-void Scalar::FromInteger()
+
+
+const char *Scalar::ImpossibleException::what() const throw()
 {
-	long number;
-
-	std::stringstream ss;
-	ss << this->str;
-	ss >> number;
-
-	if (number > INT_MAX || number < INT_MIN)
-	{
-		this->over_flag = true;
-	}
-	this->ivalue = number;
-	this->fvalue = static_cast<float>(this->ivalue);
-	this->dvalue = static_cast<double>(this->ivalue);
-	this->cvalue = static_cast<char>(this->ivalue);
+	return "impossible";
 }
 
-void Scalar::FromFloat()
+const char *Scalar::NonDisplayableException::what() const throw()
 {
-	if (this->nan_float_flag)
-		return;
-	this->str[this->str.length() - 1] = '\0';
-	std::stringstream ss;
-	ss << this->str;
-	ss >> this->fvalue;
-
-	long lvalue = static_cast<long>(this->fvalue);
-
-	if (lvalue > static_cast<long>(INT_MAX) || lvalue < static_cast<long>(INT_MIN))
-	{
-		this->over_flag = true;
-	}
-
-	if (lvalue == INT_MAX)
-		this->ivalue = INT_MAX;
-	else if (lvalue == INT_MIN)
-		this->ivalue = INT_MIN;
-	else
-		this->ivalue = static_cast<int>(this->fvalue);
-	this->dvalue = static_cast<double>(this->fvalue);
-	this->cvalue = static_cast<char>(this->fvalue);
-}
-
-void Scalar::FromDouble()
-{
-	if (this->nan_double_flag)
-		return;
-	std::stringstream ss;
-	ss << this->str;
-	ss >> this->dvalue;
-
-	long lvalue = static_cast<long>(this->dvalue); //max,min을 float로 변환하면 6자리 이하의 세세한 숫자는 버려질 가능성이 있어서 fvalue를 int보다 범위가 큰 long형으로 바꿔서 max, min과 비교한다.
-
-	if (lvalue > static_cast<long>(INT_MAX) || lvalue < static_cast<long>(INT_MIN))
-	{
-		this->over_flag = true;
-	}
-
-	if (lvalue == INT_MAX)
-		this->ivalue = INT_MAX;
-	else if (lvalue == INT_MIN)
-		this->ivalue = INT_MIN;
-	else
-		this->ivalue = static_cast<int>(this->dvalue);
-	this->ivalue = static_cast<int>(this->dvalue);
-	this->fvalue = static_cast<float>(this->dvalue);
-	this->cvalue = static_cast<char>(this->dvalue);
-}
-
-void Scalar::FromChar()
-{
-	std::stringstream ss;
-	ss << this->str;
-	ss >> this->cvalue;
-	if (ft_isdigit(this->cvalue))
-		this->cvalue -= 48;
-	this->fvalue = static_cast<float>(this->cvalue);
-	this->dvalue = static_cast<double>(this->cvalue);
-	this->ivalue = static_cast<int>(this->cvalue);
-}
-
-void Scalar::conversion(void)
-{
-	std::stringstream ss;
-	if (this->type == 'i')
-	{
-		FromInteger();
-	}
-	else if (this->type == 'f')
-	{
-		this->float_flag = true;
-		FromFloat();
-	}
-	else if (this->type == 'd')
-	{
-		this->double_flag = true;
-		FromDouble();
-	}
-	else if (this->type == 'c')
-	{
-		FromChar();
-	}
-	else
-	{
-		std::cout << "the conversion is impossible" << std::endl;
-	}
-}
-
-char Scalar::parse(void)
-{
-	if (this->str == "nanf" || this->str == "-inff" || this->str == "+inff" || this->str == "inff")
-	{
-		this->nan_float_flag = true;
-		return 'f';
-	}
-	if (this->str == "nan" || this->str == "-inf" || this->str == "+inf" || this->str == "inf")
-	{
-		this->nan_double_flag = true;
-		return 'd';
-	}
-	if (this->str.length() == 1 && ft_isprint(this->str[0]))
-	{
-		return 'c';
-	}
-	else // i , (f,d)
-	{
-		int i = 0;
-		bool ford = false;
-		bool isfloat = false;
-		while (i < (int)(this->str.length()) && ((str[i] == '+') || (str[i] == '-')))
-			i++;
-		for (; i < str[i]; i++)
-		{
-			if (!ford && str[i] == '.') //소수점은 한번만 허용
-			{
-				ford = true;
-				continue;
-			}
-			if (this->str[i] == 'e' && (this->str[i + 1] == '-' || this->str[i + 1] == '+' || std::isdigit(this->str[i + 1])))
-			{
-				if (this->str[this->str.length() - 1] == 'f')
-					return 'f';
-				return 'd';
-			}
-			if (i == (int)(this->str.length() - 1) && ford && str[i] == 'f')
-			{
-				isfloat = true;
-				continue;
-			}
-			if (!ft_isdigit(str[i]))
-				return 'e';
-		}
-		if (ford)
-		{
-			if (isfloat)
-				return 'f';
-			return 'd';
-		}
-		return 'i';
-	}
+	return "Non displayable";
 }
