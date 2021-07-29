@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hyunyoo <hyunyoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/04 11:19:26 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/20 15:43:38 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/29 13:26:05 by hyunyoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <Array.hpp>
 
-#define MAX_VAL 750
+#define MAX_VAL 30
 int main(int, char **)
 {
 	Array<int> numbers(MAX_VAL);
@@ -25,14 +25,15 @@ int main(int, char **)
 		numbers[i] = value;
 		mirror[i] = value;
 	}
-	//SCOPE
-	{
-		Array<int> tmp = numbers;
-		Array<int> test(tmp);
-	}
+	
+	Array<int> tmp = numbers;
+	tmp[0]=100000;
+	tmp[MAX_VAL / 2] = 100000;
+	Array<int> test(tmp);
 
 	for (int i = 0; i < MAX_VAL; i++)
 	{
+		std::cout <<i<<" " <<numbers[i] << " " << mirror[i] <<" "<<tmp[i]<<std::endl;
 		if (mirror[i] != numbers[i])
 		{
 			std::cerr << "didn't save the same value!!" << std::endl;
@@ -56,10 +57,7 @@ int main(int, char **)
 		std::cerr << e.what() << '\n';
 	}
 
-	for (int i = 0; i < (int)numbers.size(); i++)
-	{
-		std::cout << numbers[i] << std::endl;
-	}
 	delete[] mirror; //
+	system("leaks array");
 	return 0;
 }

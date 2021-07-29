@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
+#    By: hyunyoo <hyunyoo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/07/04 11:19:35 by bkwag             #+#    #+#              #
-#    Updated: 2021/07/04 12:12:28 by marvin           ###   ########.fr        #
+#    Created: 2021/07/04 11:19:35 by hyunyoo           #+#    #+#              #
+#    Updated: 2021/07/29 13:27:40 by hyunyoo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ OBJS			= $(SRCS:.cpp=.o)
 
 CXX				= clang++
 RM				= rm -f
-CXXFLAGS		= -Wall -Wextra -Werror -I.
+CXXFLAGS		= -Wall -Wextra -Werror -I. -g
 
 NAME			= array
 
