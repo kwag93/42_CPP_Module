@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hyunyoo <hyunyoo@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/04 11:18:46 by hyunyoo           #+#    #+#             */
-/*   Updated: 2021/07/29 13:27:12 by hyunyoo          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "iter.hpp"
 
 template<typename T>
@@ -37,7 +25,7 @@ int main(void)
 	std::cout << std::endl;
 
 	std::string stringR[5] = { "phrase 1", "phrase 2", "templates", "are", "fun" };
-	iter(stringR, 5, &display); 
+	iter(stringR, 5, &display);
 	std::cout << std::endl;
 	iter(stringR, 2, &display);
 	std::cout << std::endl;

@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Array.hpp                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hyunyoo <hyunyoo@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/04 11:19:18 by hyunyoo           #+#    #+#             */
-/*   Updated: 2021/07/29 13:27:12 by hyunyoo          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef ARRAY_HPP
 #define ARRAY_HPP
 
@@ -33,6 +21,7 @@ public:
 		for (size_t i = 0; i < this->size(); i++)
 			this->arr[i] = array.arr[i];
 	};
+
 	Array &operator=(const Array &array)
 	{
 		if (this->arr)
