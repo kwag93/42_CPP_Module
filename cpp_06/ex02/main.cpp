@@ -21,9 +21,9 @@ int main(void)
 	{
 		Base *o = generate();
 		std::cout << "Test " << i << ": ";
-		identify_from_pointer(o);
+		identify(o);
 		std::cout << ", ";
-		identify_from_reference(*o);
+		identify(*o);
 		std::cout << std::endl;
 		delete o;
 	}

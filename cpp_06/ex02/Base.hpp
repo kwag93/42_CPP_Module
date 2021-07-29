@@ -6,7 +6,7 @@
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/04 10:46:11 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/27 11:47:30 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/07/29 10:31:49 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ class C : public Base
 };
 
 Base *generate(void);
-void identify_from_pointer(Base *p);
-void identify_from_reference(Base &p);
+void identify(Base *p);
+void identify(Base &p);
 
 #endif

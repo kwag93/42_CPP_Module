@@ -8,20 +8,23 @@ Base *generate(void)
 
 	if (len == 0)
 	{
+		std::cout << "Create A ";
 		result = new A();
 	}
 	else if (len == 1)
 	{
+		std::cout << "Create B ";
 		result = new B();
 	}
 	else
 	{
+		std::cout << "Create C ";
 		result = new C();
 	}
 	return result;
 }
 
-void identify_from_pointer(Base *p)
+void identify(Base *p) // pointer는 null 포인터를 받을 수 있음
 {
 	if (dynamic_cast<A *>(p) != nullptr)
 	{
@@ -35,15 +38,18 @@ void identify_from_pointer(Base *p)
 	{
 		std::cout << "C!";
 	}
+	else
+		std::cout << "Nothing!";
 }
 
-void identify_from_reference(Base &p)
+void identify(Base &p) // 레퍼런스는 null을 받을 수 없기 때문에 try catch
 {
 	try
 	{
 		A &temp = dynamic_cast<A &>(p);
 		(void)temp;
 		std::cout << "A!";
+		return;
 	}
 	catch (std::bad_cast exp)
 	{
@@ -54,6 +60,7 @@ void identify_from_reference(Base &p)
 		B &temp = dynamic_cast<B &>(p);
 		(void)temp;
 		std::cout << "B!";
+		return;
 	}
 	catch (std::bad_cast exp)
 	{
@@ -64,8 +71,10 @@ void identify_from_reference(Base &p)
 		C &temp = dynamic_cast<C &>(p);
 		(void)temp;
 		std::cout << "C!";
+		return;
 	}
 	catch (std::bad_cast exp)
 	{
 	}
+	std::cout << "Nothing!";
 }
