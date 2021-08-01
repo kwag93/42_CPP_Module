@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/02 08:31:27 by bkwag             #+#    #+#             */
+/*   Updated: 2021/08/02 08:31:41 by bkwag            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 #include <Array.hpp>
 
@@ -15,20 +27,20 @@ int main(int, char **)
 	}
 
 	Array<int> tmp = numbers;
-	tmp[0]=100000;
+	tmp[0] = 100000;
 	tmp[MAX_VAL / 2] = 100000;
 	Array<int> test(tmp);
 
 	for (int i = 0; i < MAX_VAL; i++)
 	{
-		std::cout <<i<<" " <<numbers[i] << " " << mirror[i] <<" "<<tmp[i]<<std::endl;
+		std::cout << i << " " << numbers[i] << " " << mirror[i] << " " << tmp[i] << std::endl;
 		if (mirror[i] != numbers[i])
 		{
 			std::cerr << "didn't save the same value!!" << std::endl;
 			return 1;
 		}
 	}
-	try //underflow
+	try
 	{
 		numbers[-2] = 0;
 	}
@@ -36,7 +48,7 @@ int main(int, char **)
 	{
 		std::cerr << e.what() << '\n';
 	}
-	try // overflow
+	try
 	{
 		numbers[MAX_VAL] = 0;
 	}
@@ -45,7 +57,7 @@ int main(int, char **)
 		std::cerr << e.what() << '\n';
 	}
 
-	delete[] mirror; //
+	delete[] mirror;
 	system("leaks array");
 	return 0;
 }
