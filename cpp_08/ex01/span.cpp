@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hyunyoo <hyunyoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/07 10:56:45 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/20 15:50:28 by bkwag            ###   ########.fr       */
+/*   Created: 2021/07/07 10:56:45 by hyunyoo           #+#    #+#             */
+/*   Updated: 2021/08/01 17:45:03 by hyunyoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,37 @@
 #include <random>
 #include <limits>
 
+Span::Span()
+{
+	this->arr_len = 0;
+	this->count = 0;
+	this->arr.resize(0);
+	return ;
+}
+
+
 Span::Span(unsigned int n)
 {
-	this->arr = new int[n];
 	this->arr_len = n;
 	this->count = 0;
+	this->arr.resize(n);
 }
 
 Span::~Span()
 {
-	delete[] this->arr;
+}
+
+Span::Span(const Span &span)
+{
+	*this = span;
+	return ;
+}
+
+Span				&Span::operator=(const Span &span)
+{
+	this->arr_len = span.arr_len;
+	this->arr = span.arr;
+	return (*this);
 }
 
 void Span::addNumber(int num)
@@ -32,15 +53,23 @@ void Span::addNumber(int num)
 	{
 		throw MemoryException();
 	}
-	this->arr[this->count++] = num;
+	this->arr.push_back(num);
+	this->count++;
 }
 
-void Span::addNumber(int start, int end)
+void Span::addNumber(unsigned int st, unsigned int en)
 {
-	srand(time(NULL));
-	for (int i = start; i < end; i++)
+	std::vector<int>::iterator start = this->arr.begin()+st;
+	std::vector<int>::iterator end = this->arr.begin()+en;
+	
+	if (st > en || start >= this->arr.end() || end >= this->arr.end())
 	{
-		this->addNumber(rand() % 10000);
+		throw MemoryException();
+	}
+	for(std::vector<int>::iterator it = start; it<=end; it++)
+	{
+		*it = rand() % 1000000;
+		this->count++;
 	}
 }
 
@@ -81,6 +110,10 @@ int Span::longestSpan()
 {
 	if (this->count <= 1)
 		throw ArrayLackException();
-	this->sort();
-	return this->arr[this->count - 1] - this->arr[0];
+	return *std::max_element(this->arr.begin(), this->arr.end()) - *std::min_element(this->arr.begin(), this->arr.end()) ;
+}
+
+std::vector<int> Span::getArr()
+{
+	return this->arr;
 }

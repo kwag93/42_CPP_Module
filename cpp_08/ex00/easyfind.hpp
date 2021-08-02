@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   easyfind.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hyunyoo <hyunyoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 10:10:33 by bkwag             #+#    #+#             */
-/*   Updated: 2021/07/07 10:42:51 by bkwag            ###   ########.fr       */
+/*   Updated: 2021/08/01 12:15:24 by hyunyoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,12 @@
 template <typename T>
 int easyfind(T container, int two)
 {
-	typename T::iterator itr = container.begin();
-
-	for(;itr!=container.end(); itr++)
+	typename T::iterator it;
+	if ((it = find(container.begin(), container.end(), two)) == container.end())
 	{
-		std::string str_one = std::to_string(*itr);
-		std::string str_two = std::to_string(two);
-
-		if(str_one.find(str_two) != std::string::npos)
-		{
-			return std::distance(container.begin(),itr);
-		}
+		throw std::exception();
 	}
-	return -1;
+	return *it;
 }
 
 #endif
