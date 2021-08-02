@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunyoo <hyunyoo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 10:56:45 by hyunyoo           #+#    #+#             */
-/*   Updated: 2021/08/01 17:45:03 by hyunyoo          ###   ########.fr       */
+/*   Updated: 2021/08/02 10:59:56 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@ Span::Span()
 	this->arr_len = 0;
 	this->count = 0;
 	this->arr.resize(0);
-	return ;
+	return;
 }
-
 
 Span::Span(unsigned int n)
 {
@@ -37,10 +36,10 @@ Span::~Span()
 Span::Span(const Span &span)
 {
 	*this = span;
-	return ;
+	return;
 }
 
-Span				&Span::operator=(const Span &span)
+Span &Span::operator=(const Span &span)
 {
 	this->arr_len = span.arr_len;
 	this->arr = span.arr;
@@ -59,14 +58,14 @@ void Span::addNumber(int num)
 
 void Span::addNumber(unsigned int st, unsigned int en)
 {
-	std::vector<int>::iterator start = this->arr.begin()+st;
-	std::vector<int>::iterator end = this->arr.begin()+en;
-	
-	if (st > en || start >= this->arr.end() || end >= this->arr.end())
+	std::vector<int>::iterator start = this->arr.begin() + st;
+	std::vector<int>::iterator end = this->arr.begin() + en;
+
+	if (st > en || start >= this->arr.end() || end >= this->arr.end()) // 역순, 벡터범위 넘어섬
 	{
 		throw MemoryException();
 	}
-	for(std::vector<int>::iterator it = start; it<=end; it++)
+	for (std::vector<int>::iterator it = start; it <= end; it++)
 	{
 		*it = rand() % 1000000;
 		this->count++;
@@ -110,7 +109,7 @@ int Span::longestSpan()
 {
 	if (this->count <= 1)
 		throw ArrayLackException();
-	return *std::max_element(this->arr.begin(), this->arr.end()) - *std::min_element(this->arr.begin(), this->arr.end()) ;
+	return *std::max_element(this->arr.begin(), this->arr.end()) - *std::min_element(this->arr.begin(), this->arr.end());
 }
 
 std::vector<int> Span::getArr()
