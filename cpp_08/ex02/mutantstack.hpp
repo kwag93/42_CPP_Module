@@ -3,33 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   mutantstack.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunyoo <hyunyoo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/07 13:04:31 by hyunyoo           #+#    #+#             */
-/*   Updated: 2021/08/01 17:45:03 by hyunyoo          ###   ########.fr       */
+/*   Created: 2021/08/02 11:07:27 by bkwag             #+#    #+#             */
+/*   Updated: 2021/08/02 11:07:27 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MUTANTSTACK_HPP
-# define MUTANTSTACK_HPP
+#define MUTANTSTACK_HPP
 
-# include <iostream>
+#include <iostream>
 #include <stack>
 
-template<typename T>
-class MutantStack : public std::stack<T> {
- public:
+template <typename T>
+class MutantStack : public std::stack<T>
+{
+public:
 	typedef typename std::stack<T>::container_type::iterator iterator;
 
-	MutantStack(): std::stack<T>(){}
-	MutantStack(MutantStack const& other)
+	MutantStack() : std::stack<T>() {}
+	MutantStack(MutantStack const &other)
 	{
 		*this = other;
 	}
-	~MutantStack(){}
-	MutantStack&	operator=(MutantStack const& other)
+	~MutantStack() {}
+	MutantStack &operator=(MutantStack const &other)
 	{
-		std::stack<T>::operator =(other);
+		std::stack<T>::operator=(other);
 		return (*this);
 	}
 

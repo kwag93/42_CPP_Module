@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/07 10:53:45 by hyunyoo           #+#    #+#             */
-/*   Updated: 2021/08/02 10:58:17 by bkwag            ###   ########.fr       */
+/*   Created: 2021/08/02 11:07:00 by bkwag             #+#    #+#             */
+/*   Updated: 2021/08/02 11:07:00 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 int main()
 {
 	srand(time(NULL));
-	Span sp = Span(10000);
+	Span sp = Span(10000); // short를 위해 5
 	try
 	{
-		sp.addNumber(0, 9999);
+		sp.addNumber(0, 9999); // short 를 위해 4로 지정해서 보기
 	}
 	catch (std::exception &e)
 	{

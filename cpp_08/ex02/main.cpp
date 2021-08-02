@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunyoo <hyunyoo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bkwag <bkwag@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/07 11:35:43 by hyunyoo           #+#    #+#             */
-/*   Updated: 2021/08/01 17:45:03 by hyunyoo          ###   ########.fr       */
+/*   Created: 2021/08/02 11:07:16 by bkwag             #+#    #+#             */
+/*   Updated: 2021/08/02 11:07:16 by bkwag            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int main()
 	mstack.push(737);
 	mstack.push(0);
 
-	std::cout<<"--------"<<std::endl;
+	std::cout << "--------" << std::endl;
 
 	MutantStack<int>::iterator it = mstack.begin();
 	MutantStack<int>::iterator ite = mstack.end();
